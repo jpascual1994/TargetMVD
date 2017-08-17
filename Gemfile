@@ -29,6 +29,9 @@ gem 'devise', '~> 4.0.0'
 
 gem 'haml','~> 5.0.2'
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.6'
+end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
