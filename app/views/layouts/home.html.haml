@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}
+    %meta{ content: 'width=device-width, initial-scale=1', name: 'viewport'}
+    %meta{ content: 'initial-scale = 1.0,maximum-scale = 1.0', name: 'viewport'}
+    %title Target MVD
+    = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    = stylesheet_link_tag	'home', media: 'all'
+    / = javascript_include_tag 'application', 'data-turbolinks-track': true
+    = csrf_meta_tags
+    / Latest compiled and minified CSS
+    = javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    / = javascript_include_tag "//code.jquery.com/ui/1.11.4/jquery-ui.js"
+  %body
+    = yield

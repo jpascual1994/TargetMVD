@@ -1,0 +1,7 @@
+// alert('<%= resource.errors.full_messages.map { |msg| content_tag(:p, msg) }.join %>');
+$('#error-explanation').remove();
+<% if resource.errors.empty? %>
+	alert('The sign up was successful!');
+<% else %>
+	$('#new_user').prepend("<%= devise_error_messages! %>");
+<% end %>
