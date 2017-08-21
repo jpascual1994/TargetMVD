@@ -14,20 +14,3 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-$(document).ready(function() {
-	// $( document ).ajaxSend(function( event, jqxhr, settings ) {
-	//   console.log(event);
-	//   console.log(jqxhr);
-	//   console.log(settings);
-	// });
-
-	$('#new_user').on('ajax:send', function(xhr) {
-		console.log('test');
-	});
-
-	$('#new_user').on('ajax:success', function(xhr, status, err) {
-	  // console.log(xhr);
-	  console.log(status);
-	  // console.log(err);
-	});
-});
