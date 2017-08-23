@@ -31,7 +31,20 @@ gem 'haml','~> 5.0.2'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.6'
+  gem 'faker', '~> 1.6.6'
+  gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
+  gem 'factory_girl_rails', '~> 4.8'
 end
+
+gem 'capybara', '~> 2.15.1'
+
+group :test do
+  gem 'selenium-webdriver', '~> 3.5.1'
+  gem 'poltergeist', '~> 1.16.0'
+  gem 'phantomjs', '~> 2.1', '>= 2.1.1.0'
+  gem 'launchy', '~> 2.4', '>= 2.4.3'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

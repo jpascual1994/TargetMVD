@@ -7,10 +7,8 @@
     %title Target MVD
     = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     = stylesheet_link_tag	'home', media: 'all'
-    / = javascript_include_tag 'application', 'data-turbolinks-track': true
     = csrf_meta_tags
-    / Latest compiled and minified CSS
+    = javascript_include_tag 'application'
     = javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    / = javascript_include_tag "//code.jquery.com/ui/1.11.4/jquery-ui.js"
   %body
     = yield
