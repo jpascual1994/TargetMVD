@@ -1,7 +1,7 @@
 $('#error-explanation').remove();
 <% if resource.errors.empty? %>
-  alert('The sign up was successful!');
-  window.location = "<%= root_path %>";
+	window.location.replace( "<%= root_path %>" );
 <% else %>
-  $('#new_user').prepend("<%= devise_error_messages! %>");
+	$('#new_user').prepend("<%= devise_error_messages! %>");
 <% end %>
+
