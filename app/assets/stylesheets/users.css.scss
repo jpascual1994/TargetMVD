@@ -3,14 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .sing-up-field, .principal-button, .select-gender {
-	height: 40px;
-	width: 200px;
-	border: 1px solid #585858;
+  height: 40px;
+  width: 200px;
+  border: 1px solid #585858;
 }
 
 .sing-up-field {
-	margin: 0 120px 5px 120px;
-	text-align: center;
+  margin: 0 120px 5px 120px;
+  text-align: center;
   font-size: 15px;
 }
 
@@ -26,7 +26,7 @@
 
 .select-gender {
   margin: 0 120px 5px 120px;
-	background: none;
+  background: none;
   border-radius: 0rem;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -35,7 +35,7 @@
 }
 
 hr {
-	width: 100px;
+  width: 100px;
   margin-top: 10px;
   margin-bottom: 10px;
   border-top: 1px solid #585858;
