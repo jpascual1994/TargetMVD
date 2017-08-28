@@ -46,7 +46,7 @@ group :test do
 end
 
 group :development do
-	gem 'letter_opener', '~> 1.4', '>= 1.4.1'
+  gem 'letter_opener', '~> 1.4', '>= 1.4.1'
 end
 
 # Use ActiveModel has_secure_password

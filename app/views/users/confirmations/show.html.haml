@@ -5,19 +5,20 @@
     .text-container
       %p
         %strong
-          = "Hi, " + resource.name
-      %p Welcome to
+          = "Hi, #{resource.name}"
+      %p
+        = I18n.t(:welcome)
       %p 
         %strong TARGET
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    = form_for(User.new, as: resource_name, url: session_path(resource_name)) do |f|
       .field
         = f.label :email, class: 'principal-label'
-        = f.email_field :email, autofocus: true, class: 'sing-up-field'
+        = f.email_field :email, autofocus: true, value: resource.email,  class: 'sing-up-field'
       .field
         = f.label :password, class: 'principal-label'
-        = f.password_field :password, autocomplete: "off", class: 'sing-up-field'
+        = f.password_field :password, autocomplete: 'off', class: 'sing-up-field'
       .actions
-        = f.submit "Sign in", class: 'principal-button'
+        = f.submit 'Sign in', class: 'principal-button'
 .right-section
   .cel-container
     = image_tag 'i-6.png', class: 'cel-img'

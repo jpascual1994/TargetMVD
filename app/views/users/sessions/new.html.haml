@@ -6,17 +6,15 @@
       %p Welcome to
       %p 
         %strong TARGET
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    = form_for(resource, as: resource_name, url: user_session_path(resource)) do |f|
       .field
         = f.label :email, class: 'principal-label'
         = f.email_field :email, autofocus: true, class: 'sing-up-field'
       .field
         = f.label :password, class: 'principal-label'
-        = f.password_field :password, autocomplete: "off", class: 'sing-up-field'
+        = f.password_field :password, autocomplete: 'off', class: 'sing-up-field'
       .actions
         = f.submit "Log in", class: 'principal-button'
-    %hr
-    = link_to 'SIGN IN',home_index_path, class: 'principal-label'
 .right-section
   .cel-container
     = image_tag 'i-6.png', class: 'cel-img'

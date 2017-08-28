@@ -1,7 +1,7 @@
 $('#error-explanation').remove();
 <% if resource.errors.empty? %>
-	window.location.replace( "<%= root_path %>" );
+  $('.left-container').replaceWith("<%= j render partial: 'users/registrations/confirmation_sent.html.haml', layout: false %>");
 <% else %>
-	$('#new_user').prepend("<%= devise_error_messages! %>");
+  $('#new_user').prepend("<%= devise_error_messages! %>");
 <% end %>
 
