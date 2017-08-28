@@ -3,11 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'fonts';
 body {
-	font-family: 'Open Sans';
-	margin: 0;
+  font-family: 'Open Sans';
+  margin: 0;
 }
 .left-section, .right-section {
-	padding: 100px 200px 100px 200px;
+  padding: 100px 200px 100px 200px;
   box-sizing: border-box;
   width: 50%;
   display: inline-block;
@@ -15,31 +15,31 @@ body {
   text-align: center;
 }
 .left-container {
-	display: inline-block;
+  display: inline-block;
   text-align: center;
 }
 
 .right-section {
-	float: right;
-	background-color: #2fbcf7;
-	height: 100vh;
+  float: right;
+  background-color: #2fbcf7;
+  height: 100vh;
 }
 
 .img-store {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 #error-explanation {
-	color: #F00;
+  color: #F00;
 }
 
 .imgs-space {
-	display: inline-block;
+  display: inline-block;
   width: 15px;
 }
 
 .principal-label {
-	display: block;
+  display: block;
   font-size: 10px;
   font-weight: 700;
   color: #000;
@@ -47,106 +47,106 @@ body {
 }
 
 @media only screen and (max-width: 1450px) {
-	.right-section {
+  .right-section {
       padding: 60px 60px 60px 60px;
   }
 }
 
 @media only screen and (max-width: 1300px) {
-    .left-section, .right-section {
-        padding: 100px 60px 100px 60px;
-    }
+  .left-section, .right-section {
+      padding: 100px 60px 100px 60px;
+  }
 }
 
 @media only screen and (max-width: 1100px) {
-	.right-section {
-        padding: 50px 40px 50px 40px;
+  .right-section {
+    padding: 50px 40px 50px 40px;
   }
 }
 
 @media only screen and (max-width: 800px) {
-	.right-section {
-		display: none;
-	}
+  .right-section {
+    display: none;
+  }
 
-	.left-section {
-		padding: 100px 160px 100px 160px;
-	  width: 100%;
-	  display: inline-block;
-	  height: 100vh;
-	  text-align: center;
-	}
+  .left-section {
+    padding: 100px 160px 100px 160px;
+    width: 100%;
+    display: inline-block;
+    height: 100vh;
+    text-align: center;
+  }
 }
 
 @media only screen and (max-width: 720px) {
-    .left-section {
-        padding: 80px 80px 20px 80px;
-    }
+  .left-section {
+      padding: 80px 80px 20px 80px;
+  }
 }
 
 @media only screen and (max-width: 650px) {
-    .left-section {
-        padding: 80px 40px 20px 40px;
-    }
+  .left-section {
+      padding: 80px 40px 20px 40px;
+  }
 }
 
 @media only screen and (max-width: 450px) {
-	.left-section {
-		padding-top: 20px;
-		padding-bottom: 20px;
-	}
+  .left-section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 
-	h2 {
-		font-size: 20px;
-	}
+  h2 {
+    font-size: 20px;
+  }
 
-	h3 {
-		font-size: 15px;
-	}
+  h3 {
+    font-size: 15px;
+  }
 
-	p {
-		font-size: 10px;
-	}
+  p {
+    font-size: 10px;
+  }
 }
 
 @media only screen and (max-height: 800px) {
-	.cel-img {
-  	height: 550px;
+  .cel-img {
+    height: 550px;
   }
 
   .appstore-img {
-  	height: 30px
+    height: 30px
   }
 
   .fb-tw-img {
-  	height: 25px;
+    height: 25px;
   }
 }
 
 @media only screen and (max-height: 720px) {
-	.cel-img {
-  	height: 450px;
+  .cel-img {
+    height: 450px;
   }
 
   .appstore-img {
-  	height: 25px
+    height: 25px
   }
 
   .fb-tw-img {
-  	height: 20px;
+    height: 20px;
   }
 }
 
 @media only screen and (max-height: 550px) {
-	.cel-img {
-  	height: 350px;
+  .cel-img {
+    height: 350px;
   }
 
   .appstore-img {
-  	height: 25px
+    height: 25px
   }
 
   .fb-tw-img {
-  	height: 20px;
+    height: 20px;
   }
 }
