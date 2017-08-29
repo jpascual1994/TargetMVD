@@ -1,0 +1,12 @@
+.left-container.confirmation-container
+  .img-smilies.comfirmation_img
+    = image_tag 'smilies.png'
+  %h4.confirmation-title Yey!
+  %h5.confirmation-subtitle
+    = I18n.t(:only_more_step)
+  %h4.confirmation-title TARGET
+  .bottom-section
+    %p.confirmation-p
+      = I18n.t(:email_sent)
+    %p.confirmation-p
+      = I18n.t(:check_mail)

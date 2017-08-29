@@ -1,0 +1,30 @@
+.left-section
+  .left-container
+    .img-smilies
+      = image_tag 'smilies.png'
+    .text-container
+      %p
+        %strong
+          = "Hi, #{resource.name}"
+      %p
+        = I18n.t(:welcome)
+      %p 
+        %strong TARGET
+    = form_for(User.new, as: resource_name, url: session_path(resource_name)) do |f|
+      .field
+        = f.label :email, class: 'principal-label'
+        = f.email_field :email, autofocus: true, value: resource.email,  class: 'sing-up-field'
+      .field
+        = f.label :password, class: 'principal-label'
+        = f.password_field :password, autocomplete: 'off', class: 'sing-up-field'
+      .actions
+        = f.submit 'Sign in', class: 'principal-button'
+.right-section
+  .cel-container
+    = image_tag 'i-6.png', class: 'cel-img'
+  .img-store
+    = image_tag 'appstore-button.png', class: 'appstore-img'
+  .imgs-fb-tw
+    = image_tag 'facebook.png', class: 'fb-tw-img'
+    .imgs-space
+    = image_tag 'twitter.png', class: 'fb-tw-img'

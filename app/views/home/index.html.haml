@@ -4,8 +4,10 @@
       .img-smilies
         = image_tag 'smilies.png'
       %h2 TARGET MVD
-      %h3 Find people near you & Connect
-      %p Create a  target  wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.
+      %h3 
+        = I18n.t(:target_slogan)
+      %p 
+        = I18n.t(:why_taget)
     .bottom-subsec
       = link_to 'SIGN UP', new_user_registration_path, { class: 'principal-label' }
 .right-section

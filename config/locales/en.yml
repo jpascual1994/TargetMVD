@@ -20,4 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  target_slogan: 'Find people near you & Connect'
+  why_taget: 'Create a  target  wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.'
+  welcome: 'Welcome to'
+  only_more_step: 'Only one more step to start enjoying'
+  email_sent: 'We’ve sent an email to confirm your account.'
+  check_mail: 'Please check your inbox.'

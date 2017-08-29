@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Users::RegistrationsController, :type => :controller do 
+RSpec.describe Users::RegistrationsController, type: :controller do
   before(:each) do
     @request.env["devise.mapping"] = Devise.mappings[:user]
   end
@@ -22,20 +22,28 @@ RSpec.describe Users::RegistrationsController, :type => :controller do
   describe "#create" do
     context "with valid params" do
       let(:user_params) { { name: "name", email: "mail@e", password: "123456", password_confirmation: "123456", gender: 1 } } 
+      let(:user) { User.last }
 
       before(:each) do
-        post :create, user: user_params
+        xhr :post, :create, user: user_params
       end
 
       it "create user" do
-        user = User.last
         expect(user.name).to eq(user_params[ :name ])
         expect(user.email).to eq(user_params[ :email ])
         expect(user.gender).to eq(user_params[ :gender ])
       end
 
-      it "redirect to root" do
-        expect(response).to redirect_to( :root )
+      it "render partial confirmation sent" do
+        expect(response).to render_template( 'create' )
+      end
+
+      it "send confirmation mail", truncation: true do
+        expect(user.confirmation_sent_at?).to be true
+      end
+
+      it "not confirm the user" do
+        expect(user.confirmed?).to be false
       end
     end
 

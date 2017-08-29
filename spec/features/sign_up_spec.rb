@@ -12,8 +12,8 @@ RSpec.feature "Sign Up", type: :feature, js: true do
     page.fill_in 'user_password_confirmation', with: '123456'
     page.select 'Male', from: 'user_gender'
     click_button  "Sign up"
-    page.accept_prompt( 'The sign up was successful!' )
-    expect(page).to have_current_path(root_path)
+    expect(page).to have_content( I18n.t(:only_more_step) )
+    expect(page).to have_current_path(new_user_registration_path)
   end
 
   scenario "Empty form" do

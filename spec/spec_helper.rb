@@ -14,6 +14,8 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
+ENV['RAILS_ENV'] ||= 'test'
+
 require File.expand_path('../../config/environment', __FILE__)
 
 require 'rspec/rails'
@@ -36,7 +38,7 @@ end
 
 RSpec.configure do |config|
   config.include Capybara::DSL
-  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Warden::Test::Helpers
 
   config.before(:suite) do

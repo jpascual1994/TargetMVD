@@ -25,7 +25,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
-gem 'devise', '~> 4.0.0'
+gem 'devise', '~> 4.3.0'
 
 gem 'haml','~> 5.0.2'
 
@@ -43,6 +43,10 @@ group :test do
   gem 'poltergeist', '~> 1.16.0'
   gem 'phantomjs', '~> 2.1', '>= 2.1.1.0'
   gem 'launchy', '~> 2.4', '>= 2.4.3'
+end
+
+group :development do
+  gem 'letter_opener', '~> 1.4', '>= 1.4.1'
 end
 
 # Use ActiveModel has_secure_password
