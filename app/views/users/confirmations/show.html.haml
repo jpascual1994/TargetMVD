@@ -13,10 +13,10 @@
     = form_for(User.new, as: resource_name, url: session_path(resource_name)) do |f|
       .field
         = f.label :email, class: 'principal-label'
-        = f.email_field :email, autofocus: true, value: resource.email,  class: 'sing-up-field'
+        = f.email_field :email, autofocus: true, value: resource.email,  class: 'principal-field'
       .field
         = f.label :password, class: 'principal-label'
-        = f.password_field :password, autocomplete: 'off', class: 'sing-up-field'
+        = f.password_field :password, autocomplete: 'off', class: 'principal-field'
       .actions
         = f.submit 'Sign in', class: 'principal-button'
 .right-section

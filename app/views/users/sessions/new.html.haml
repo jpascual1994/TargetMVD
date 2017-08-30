@@ -7,12 +7,15 @@
       %p 
         %strong TARGET
     = form_for(resource, as: resource_name, url: user_session_path(resource)) do |f|
+      - flash.each do |key, value|
+        .error-msg
+          = value
       .field
         = f.label :email, class: 'principal-label'
-        = f.email_field :email, autofocus: true, class: 'sing-up-field'
+        = f.email_field :email, autofocus: true, class: 'principal-field'
       .field
         = f.label :password, class: 'principal-label'
-        = f.password_field :password, autocomplete: 'off', class: 'sing-up-field'
+        = f.password_field :password, autocomplete: 'off', class: 'principal-field'
       .actions
         = f.submit "Log in", class: 'principal-button'
 .right-section

@@ -1,31 +1,14 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'global_values';
 
-.sing-up-field, .principal-button, .select-gender {
-  height: 40px;
-  width: 200px;
-  border: 1px solid #585858;
-}
-
-.sing-up-field {
-  margin: 0 120px 5px 120px;
-  text-align: center;
-  font-size: 15px;
-}
-
-.principal-button {
-  text-transform: uppercase;
-  background-color: #000;
-  color: white;
-  font-size: 10px;
-  font-weight: 700;
-  border: none;
-  margin-top: 30px;
+body {
+  font-family: 'Open Sans';
+  margin: 0;
 }
 
 .select-gender {
-  margin: 0 120px 5px 120px;
   background: none;
   border-radius: 0rem;
   -webkit-appearance: none;
@@ -38,74 +21,80 @@ hr {
   width: 100px;
   margin-top: 10px;
   margin-bottom: 10px;
-  border-top: 1px solid #585858;
+  border-top: 1px solid $border-color;
 }
 
-.confirmation-container{
+.confirmation-container {
   margin-top: 100px;
 }
 
-.confirmation-title{
+.confirmation-title {
   font-weight: 700;
 }
 
-.confirmation-subtitle{
+.confirmation-subtitle {
   font-weight: 600;
 }
 
-.bottom-section{
+.bottom-section {
   margin-top: 30px;
 }
 
-.confirmation-p{
+.confirmation-p {
   margin: 0;
   font-size: small;
 }
 
-@media only screen and (max-width: 1600px) {
-  .sing-up-field, .select-gender {
-    margin: 0 60px 5px 60px;
-  }
-
-  .sing-up-field, .principal-button, .select-gender {
-    height: 30px;
-    width: 150px;
-    font-size: x-small;
-  }
+.home-left, .home-right {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 100vh;
 }
 
-@media only screen and (max-width: 1300px) {
-  .sing-up-field, .select-gender {
-    margin: 0 20px 5px 20px;
-  }
+.home-right {
+  width: 75%;
+  float: right;
+  height: 100vh;
+  background-color: #f7ffde;
 }
 
-@media only screen and (max-width: 1100px) {
-  .sing-up-field, .select-gender {
-    margin: 0 70px 5px 70px;
-  }
+.home-left {
+  width: 25%;
+  text-align: center;
+  border: 1px solid #d4d4d4;
+  position: relative;
 }
 
-@media only screen and (max-width: 800px) {
-  .sing-up-field, .select-gender {
-    margin: 0 120px 5px 120px;
-  }
+.home-title-sec .h3 {
+  font-weight: 600;
 }
 
-@media only screen and (max-width: 650px) {
-  .sing-up-field, .select-gender {
-    margin: 0 150px 5px 150px;
-  }
+.profile-img {
+  height: 100px;
 }
 
-@media only screen and (max-width: 525px) {
-  .sing-up-field, .select-gender {
-    margin: 0 90px 5px 90px;
-  }
+.logout-label, .edit-label {
+  display: inline-block;
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 12px;
 }
 
-@media only screen and (max-width: 400px) {
-  .sing-up-field, .select-gender {
-    margin: 0 30px 5px 30px;
-  }
+.logout-label {
+  color: #4a4a4a;
+}
+
+.edit-label {
+  color: $principal-color;
+}
+
+.img-footer {
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.smiles-img {
+  height: 30px;
 }

@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'fonts';
+@import 'global_values';
+
 body {
   font-family: 'Open Sans';
   margin: 0;
@@ -21,7 +23,7 @@ body {
 
 .right-section {
   float: right;
-  background-color: #2fbcf7;
+  background-color: $principal-color;
   height: 100vh;
 }
 
@@ -29,7 +31,7 @@ body {
   margin-bottom: 10px;
 }
 
-#error-explanation {
+#error-explanation, .error-msg {
   color: #F00;
 }
 
@@ -56,6 +58,35 @@ body {
 
 .text-container {
   margin-bottom: 15px;
+}
+
+.principal-button {
+  text-transform: uppercase;
+  background-color: #000;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  border: none;
+  margin-top: 30px;
+}
+
+.principal-field, .principal-button {
+  height: 40px;
+  width: 200px;
+  border: 1px solid $border-color;
+}
+
+.principal-field {
+  margin: 0 0 5px 0;
+  text-align: center;
+  font-size: 15px;
+}
+
+hr {
+  width: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-top: 1px solid $border-color;
 }
 
 @media only screen and (max-width: 1450px) {
@@ -118,6 +149,12 @@ body {
 
   p {
     font-size: 10px;
+  }
+
+  .principal-field, .principal-button {
+    height: 30px;
+    width: 150px;
+    font-size: x-small;
   }
 }
 

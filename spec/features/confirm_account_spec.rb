@@ -22,6 +22,6 @@ RSpec.feature "Confirm Account", type: :feature, js: true do
     page.fill_in 'user_password', with: '123456'
     click_button "Sign in"
 
-    expect(page).to have_current_path( root_path )
+    expect(page).to have_current_path( homepage_users_path )
   end
 end
