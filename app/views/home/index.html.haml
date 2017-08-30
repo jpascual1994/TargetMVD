@@ -4,11 +4,22 @@
       .img-smilies
         = image_tag 'smilies.png'
       %h2 TARGET MVD
-      %h3 
+      %h3
         = I18n.t(:target_slogan)
-      %p 
+      %p
         = I18n.t(:why_taget)
+    .form-container
+      = form_for(User.new, url: session_path(:user), method: :post) do |f|
+        .field
+          = f.label :email, class: 'principal-label'
+          = f.email_field :email, autofocus: true,  class: 'principal-field'
+        .field
+          = f.label :password, class: 'principal-label'
+          = f.password_field :password, autocomplete: 'off', class: 'principal-field'
+        .actions
+          = f.submit 'Sign in', class: 'principal-button'
     .bottom-subsec
+      %hr
       = link_to 'SIGN UP', new_user_registration_path, { class: 'principal-label' }
 .right-section
   .cel-container
