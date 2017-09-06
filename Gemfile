@@ -29,6 +29,10 @@ gem 'devise', '~> 4.3.0'
 
 gem 'haml','~> 5.0.2'
 
+gem 'omniauth-facebook', '~> 4.0'
+
+gem 'figaro', '~> 1.1', '>= 1.1.1'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.6'
   gem 'faker', '~> 1.6.6'

@@ -4,7 +4,7 @@
       = image_tag 'smilies.png'
     .text-container
       %p Welcome to
-      %p 
+      %p
         %strong TARGET
     = form_for(resource, as: resource_name, url: user_session_path(resource)) do |f|
       - flash.each do |key, value|
@@ -17,7 +17,8 @@
         = f.label :password, class: 'principal-label'
         = f.password_field :password, autocomplete: 'off', class: 'principal-field'
       .actions
-        = f.submit "Log in", class: 'principal-button'
+        = f.submit 'Log in', class: 'principal-button'
+    = link_to 'Connect with facebook', user_facebook_omniauth_authorize_path, { class: 'principal-label facebook-link' }
 .right-section
   .cel-container
     = image_tag 'i-6.png', class: 'cel-img'

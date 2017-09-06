@@ -21,7 +21,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 
   describe "#create" do
     context "with valid params" do
-      let(:user_params) { { name: "name", email: "mail@e", password: "123456", password_confirmation: "123456", gender: 1 } } 
+      let(:user_params) { { name: "name", email: "mail@e", password: "123456", password_confirmation: "123456", gender: "male" } }
       let(:user) { User.last }
 
       before(:each) do
@@ -48,73 +48,73 @@ RSpec.describe Users::RegistrationsController, type: :controller do
     end
 
     context "with invalid params" do
-      context "empty fields" do  
+      context "empty fields" do
         before(:each) do
-          post :create, user: { name: "", email: "", password: "", password_confirmation: "", gender: 1 }
+          post :create, user: { name: "", email: "", password: "", password_confirmation: "", gender: "male" }
         end
 
-        it "shouldn't create the user" do 
+        it "shouldn't create the user" do
           expect(User.count).to eq(0)
         end
 
-        it "should render sig up view" do 
+        it "should render sig up view" do
           expect(response).to render_template( "new" )
         end
       end
 
       context "with password too short" do
         before(:each) do
-          post :create, user: { name: "name", email: "mail@e", password: "1", password_confirmation: "1", gender: 1 }
+          post :create, user: { name: "name", email: "mail@e", password: "1", password_confirmation: "1", gender: "male" }
         end
 
-        it "shouldn't create the user" do 
+        it "shouldn't create the user" do
           expect(User.count).to eq(0)
         end
 
-        it "should render sig up view" do 
+        it "should render sig up view" do
           expect(response).to render_template( "new" )
         end
       end
 
       context "with invalid password confirmation" do
         before(:each) do
-          post :create, user: { name: "name", email: "mail@e", password: "123456", password_confirmation: "qwerty", gender: 1 }
+          post :create, user: { name: "name", email: "mail@e", password: "123456", password_confirmation: "qwerty", gender: "male" }
         end
-        
-        it "shouldn't create the user" do 
+
+        it "shouldn't create the user" do
           expect(User.count).to eq(0)
         end
 
-        it "should render sig up view" do 
+        it "should render sig up view" do
           expect(response).to render_template( "new" )
         end
       end
 
       context "with empty email" do
         before(:each) do
-          post :create, user: { name: "name", email: "", password: "123456", password_confirmation: "123456", gender: 1 }
+          post :create, user: { name: "name", email: "", password: "123456", password_confirmation: "123456", gender: "male" }
         end
 
-        it "shouldn't create the user" do 
+        it "shouldn't create the user" do
           expect(User.count).to eq(0)
         end
 
-        it "should render sig up view" do 
+        it "should render sig up view" do
           expect(response).to render_template( "new" )
         end
       end
 
       context "with a email already used" do
         before(:each) do
-          FactoryGirl.create( :user, email: 'mail@e' )
-          post :create, user: { name: "name", email: "mail@e", password: "123456", password_confirmation: "qwerty", gender: 1 }
+          FactoryGirl.create( :user, email: "mail@e" )
+          post :create, user: { name: "name", email: "mail@e", password: "123456", password_confirmation: "qwerty", gender: "male" }
         end
 
-        it "shouldn't create the user" do 
+        it "shouldn't create the user" do
           expect(User.count).to eq(1)
         end
 
-        it "should render sig up view" do 
+        it "should render sig up view" do
           expect(response).to render_template( "new" )
         end
       end

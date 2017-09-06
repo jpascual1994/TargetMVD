@@ -25,6 +25,8 @@ require 'capybara/poltergeist'
 require 'phantomjs'
 require 'factory_girl_rails'
 
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
+
 FactoryGirl.factories.clear
 FactoryGirl.reload
 
@@ -152,4 +154,6 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+  config.order = :random
+  config.include(OmniauthMacros)
 end

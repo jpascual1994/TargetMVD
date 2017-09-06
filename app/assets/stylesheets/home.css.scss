@@ -82,6 +82,12 @@ body {
   font-size: 15px;
 }
 
+.facebook-link {
+  font-size: smaller;
+  font-weight: 700;
+  margin-top: 60px;
+}
+
 hr {
   width: 100px;
   margin-top: 10px;
@@ -183,6 +189,10 @@ hr {
 
   .fb-tw-img {
     height: 20px;
+  }
+
+  .facebook-link {
+    margin-top: 40px;
   }
 }
 

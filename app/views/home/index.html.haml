@@ -19,6 +19,7 @@
         .actions
           = f.submit 'Sign in', class: 'principal-button'
     .bottom-subsec
+      = link_to 'Connect with facebook', user_facebook_omniauth_authorize_path, { class: 'principal-label facebook-link' }
       %hr
       = link_to 'SIGN UP', new_user_registration_path, { class: 'principal-label' }
 .right-section
