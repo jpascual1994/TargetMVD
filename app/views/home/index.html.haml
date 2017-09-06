@@ -10,6 +10,9 @@
         = I18n.t(:why_taget)
     .form-container
       = form_for(User.new, url: session_path(:user), method: :post) do |f|
+        - flash.each do |key, value|
+          .error-msg
+            = value
         .field
           = f.label :email, class: 'principal-label'
           = f.email_field :email, autofocus: true,  class: 'principal-field'
