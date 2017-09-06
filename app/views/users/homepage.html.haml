@@ -6,7 +6,7 @@
   .edit-logout
     = link_to 'Edit', edit_user_registration_path, { class: 'edit-label' }
     \/
-    = link_to 'Logout', destroy_user_session_path, { class: 'logout-label' }
+    = link_to 'Logout', destroy_user_session_path, { method: :delete, class: 'logout-label' }
   %hr
 
   .chats-section
