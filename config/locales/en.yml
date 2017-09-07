@@ -20,6 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  target_title: 'Target MVD'
   target_slogan: 'Find people near you & Connect'
   why_taget: 'Create a  target  wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.'
   welcome: 'Welcome to'
