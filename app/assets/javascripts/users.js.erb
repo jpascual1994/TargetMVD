@@ -1,0 +1,55 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+// You can use CoffeeScript in this file: http://coffeescript.org/
+function initMap() {
+  // Montevideo latitude and longitude
+  const default_lat = -34.906349;
+  const default_lng = -56.19992;
+
+  var pos = {
+    lat: default_lat,
+    lng: default_lng
+  };
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: pos,
+    zoom: 18
+  });
+
+  var targetCircle = new google.maps.Circle({
+    strokeColor: '#efc638',
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: '#FFFFFF',
+    fillOpacity: 0.90,
+    map: map,
+    center: pos,
+    radius: 12
+  });
+
+  var marker = new google.maps.Marker({
+    position: pos,
+    map: map,
+    icon: '<%= image_path "marker.png" %>'
+  });
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      map.setCenter(pos);
+      targetCircle.setCenter(pos);
+      marker.setPosition(pos);
+    }, function() {
+      // User has disable Geolocation
+      alert('Plese enable your location')
+    });
+  }
+}
+
+$(document).ready(function() {
+  initMap();
+});
