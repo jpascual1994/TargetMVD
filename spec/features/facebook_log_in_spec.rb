@@ -8,6 +8,7 @@ feature 'Confirm Account', js: true do
 
   context 'valid login with facebook' do
     background do
+      page.driver.browser.js_errors = false
       set_valid_omniauth
       visit root_path
       click_link 'Connect with facebook'

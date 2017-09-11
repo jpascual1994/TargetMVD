@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.7'
+gem 'rails', '4.2'
 # Use postgres as the database for Active Record
 gem 'pg', '~> 0.18.4'
 # Use SCSS for stylesheets
@@ -33,13 +33,14 @@ gem 'omniauth-facebook', '~> 4.0'
 
 gem 'figaro', '~> 1.1', '>= 1.1.1'
 
+gem 'responders', '~> 2.0'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.6'
   gem 'faker', '~> 1.6.6'
   gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
   gem 'factory_girl_rails', '~> 4.8'
 end
-
 gem 'capybara', '~> 2.15.1'
 
 group :test do
