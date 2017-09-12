@@ -6,10 +6,10 @@
     %meta{ content: 'initial-scale = 1.0,maximum-scale = 1.0', name: 'viewport'}
     %title
       = I18n.t(:target_title)
-    = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     = stylesheet_link_tag	'home', media: 'all'
     = csrf_meta_tags
     = javascript_include_tag 'application'
-    = javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    = javascript_include_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
   %body
     = yield

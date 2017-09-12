@@ -1,12 +1,11 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2'
+gem 'rails', '5.1'
 # Use postgres as the database for Active Record
 gem 'pg', '~> 0.18.4'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0.6'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -36,11 +35,12 @@ gem 'figaro', '~> 1.1', '>= 1.1.1'
 gem 'responders', '~> 2.0'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.6'
+  gem 'rspec-rails', '~> 3.6.1'
   gem 'faker', '~> 1.6.6'
   gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
   gem 'factory_girl_rails', '~> 4.8'
 end
+
 gem 'capybara', '~> 2.15.1'
 
 group :test do
@@ -48,10 +48,12 @@ group :test do
   gem 'poltergeist', '~> 1.16.0'
   gem 'phantomjs', '~> 2.1', '>= 2.1.1.0'
   gem 'launchy', '~> 2.4', '>= 2.4.3'
+  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.2'
 end
 
 group :development do
   gem 'letter_opener', '~> 1.4', '>= 1.4.1'
+  gem 'listen'
 end
 
 # Use ActiveModel has_secure_password
