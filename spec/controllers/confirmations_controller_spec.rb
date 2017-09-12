@@ -10,7 +10,7 @@ RSpec.describe Users::ConfirmationsController, type: :controller do
 
     context "with valid token" do
       before(:each) do
-        get :show, confirmation_token: user.confirmation_token
+        get :show, params: { confirmation_token: user.confirmation_token }
       end
 
       it "responds HTTP 200" do
@@ -29,7 +29,7 @@ RSpec.describe Users::ConfirmationsController, type: :controller do
 
     context "with invalid token" do
       before(:each) do
-        get :show, confirmation_token: ''
+        get :show, params: { confirmation_token: '' }
       end
 
       it "responds HTTP 200" do
@@ -44,6 +44,6 @@ RSpec.describe Users::ConfirmationsController, type: :controller do
         user.reload
         expect(user.confirmed?).to be false
       end
-    end 
+    end
   end
 end
