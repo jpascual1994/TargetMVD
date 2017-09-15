@@ -3,6 +3,7 @@
     .h3 TARGET
   .profile-img
   = @user.name
+  .hidden.get-targets-path{ data: { path: user_targets_path } }
   .edit-logout
     = link_to 'Edit', edit_user_registration_path, { class: 'edit-label' }
     \/
