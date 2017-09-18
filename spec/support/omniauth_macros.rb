@@ -10,8 +10,8 @@ module OmniauthMacros
   end
 
   def set_request_env_for_omniauth
-    request.env["devise.mapping"] = Devise.mappings[:user]
-    request.env["omniauth.auth"] = OmniAuth::AuthHash.new( valid_response )
+    request.env['devise.mapping'] = Devise.mappings[:user]
+    request.env['omniauth.auth'] = OmniAuth::AuthHash.new(valid_response)
   end
 
   def valid_response
