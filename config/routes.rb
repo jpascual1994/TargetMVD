@@ -11,4 +11,6 @@ Rails.application.routes.draw do
       get :homepage
     end
   end
+
+  resources :user_targets, only: :index
 end
