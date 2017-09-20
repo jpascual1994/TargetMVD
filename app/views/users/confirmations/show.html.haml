@@ -8,7 +8,7 @@
           = "Hi, #{resource.name}"
       %p
         = I18n.t(:welcome)
-      %p 
+      %p
         %strong TARGET
     = form_for(User.new, as: resource_name, url: session_path(resource_name)) do |f|
       .field

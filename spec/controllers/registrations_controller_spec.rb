@@ -21,7 +21,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 
   describe '#create' do
     context 'with valid params' do
-      let(:new_user) { userParams('name', 'mail@e', '123456', '123456', 'male') }
+      let(:new_user) { user_params('name', 'mail@e', '123456', '123456', 'male') }
       let(:user) { User.last }
 
       before(:each) do
@@ -50,7 +50,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
     context 'with invalid params' do
       context 'empty fields' do
         before(:each) do
-          post :create, params: userParams('', '', '', '', 'male')
+          post :create, params: user_params('', '', '', '', 'male')
         end
 
         it 'dosen\'t create the user' do
@@ -64,7 +64,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 
       context 'with password too short' do
         before(:each) do
-          post :create, params: userParams('name', 'mail@e', '1', '1', 'male')
+          post :create, params: user_params('name', 'mail@e', '1', '1', 'male')
         end
 
         it 'dosen\'t create the user' do
@@ -78,7 +78,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 
       context 'with invalid password confirmation' do
         before(:each) do
-          post :create, params: userParams('name', 'mail@e', '123456', 'qwerty', 'male')
+          post :create, params: user_params('name', 'mail@e', '123456', 'qwerty', 'male')
         end
 
         it 'dosen\'t create the user' do
@@ -92,7 +92,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 
       context 'with empty email' do
         before(:each) do
-          post :create, params: userParams('name', '', '123456', '123456', 'male')
+          post :create, params: user_params('name', '', '123456', '123456', 'male')
         end
 
         it 'dosen\'t create the user' do
@@ -107,7 +107,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
       context 'with a email already used' do
         before(:each) do
           FactoryGirl.create( :user, email: 'mail@e' )
-          post :create, params: userParams('name', 'mail@e', '123456', 'qwerty', 'male')
+          post :create, params: user_params('name', 'mail@e', '123456', 'qwerty', 'male')
         end
 
         it 'dosen\'t create the user' do
@@ -122,7 +122,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
   end
 end
 
-def userParams (name, email, password, password_confirmation, gender)
+def user_params (name, email, password, password_confirmation, gender)
   {
     user: {
       name: name,

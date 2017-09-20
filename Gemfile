@@ -26,7 +26,7 @@ gem 'spring',        group: :development
 
 gem 'devise', '~> 4.3.0'
 
-gem 'haml','~> 5.0.2'
+gem 'haml','~> 5.0.3'
 
 gem 'omniauth-facebook', '~> 4.0'
 
@@ -54,6 +54,8 @@ end
 group :development do
   gem 'letter_opener', '~> 1.4', '>= 1.4.1'
   gem 'listen'
+  gem 'rails_best_practices', '~> 1.19.0'
+  gem 'reek', '~> 3.4.0'
 end
 
 # Use ActiveModel has_secure_password

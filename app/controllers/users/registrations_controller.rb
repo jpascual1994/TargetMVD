@@ -14,18 +14,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.save
     yield resource if block_given?
     if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+        redirect_path = after_sign_up_path_for(resource)
+      else
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        redirect_path = after_inactive_sign_up_path_for(resource)
+      end
+
       respond_to do |format|
-        if resource.active_for_authentication?
-          set_flash_message! :notice, :signed_up
-          sign_up(resource_name, resource)
-          format.html { redirect_to after_sign_up_path_for(resource) }
-          format.js {}
-        else
-          set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
-          expire_data_after_sign_in!
-          format.html { redirect_to after_inactive_sign_up_path_for(resource) }
-          format.js {}
-        end
+        format.html { redirect_to  redirect_path}
+        format.js {}
       end
     else
       clean_up_passwords resource
