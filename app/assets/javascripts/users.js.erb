@@ -6,11 +6,14 @@ var map;
 const default_lat = -34.906349;
 const default_lng = -56.19992;
 const targetColor = '#efc638';
+const defautRadius = 50;
 
 var pos = {
   lat: default_lat,
   lng: default_lng
 };
+
+var newTarget;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -37,7 +40,20 @@ function initMap() {
       // User has disable Geolocation
       alert('Plese enable your location')
     });
-  }
+  };
+
+  map.addListener('click', function(e) {
+    createTarget(e.latLng)
+  });
+
+  newTarget = new google.maps.Circle({
+    strokeColor: targetColor,
+    strokeWeight: 2,
+    fillColor: '#FFFFFF',
+    fillOpacity: 0.70,
+    map: map,
+    radius: defautRadius
+  })
 }
 
 function displayTargets() {
@@ -72,7 +88,80 @@ function showTarget(position, radius, icon){
   })
 };
 
+function createTarget(pos) {
+  $('.home-left-new-target').removeClass('hidden');
+  $('.home-left').addClass('hidden');
+  map.setCenter(pos);
+  newTarget.setCenter(pos);
+}
+
+function backToHome() {
+  $('.home-left-new-target').addClass('hidden');
+  $('.home-left').removeClass('hidden');
+  newTarget.setCenter(null);
+  removeErrorMsgs();
+}
+
+function selectTopicEvent() {
+  $('.topic').removeClass('selected');
+  $(this).addClass('selected');
+  $('.targets-list').addClass('hidden');
+  $('.select-topic').html(this.innerHTML)
+}
+
+function changeTargetRadius() {
+  newTarget.setRadius(parseInt($('#selected_area option:selected').val()));
+}
+
+function postNewTarget() {
+  var center = newTarget.getCenter();
+  var url = $('.get-targets-path').data('path');
+  var radio = newTarget.getRadius();
+
+  var data = {
+    user_target: {
+      area: radio,
+      title: $('#new-target-title').val(),
+      latitude: center.lat(),
+      longitude: center.lng(),
+      topic_id: $('.topic.selected').data('id'),
+    }
+  };
+
+  removeErrorMsgs();
+
+  $.post(url,data).done(function(data) {
+    var icon = data.target.icon;
+    showTarget(center, radio, icon);
+    newTarget.setCenter(null);
+    backToHome()
+  }).fail(function(data) {
+    $.each(data.responseJSON, function(i,v) {
+      $('.create-target-middle').append("<p class='error-msg'>"+ v +"</p>");
+    })
+  })
+}
+
+function removeErrorMsgs() {
+  $('.error-msg').remove();
+}
+
+function createTargetEvents() {
+  $('.back-button').click(backToHome)
+
+  $('.select-topic').click(function() {
+    $('.targets-list').toggleClass('hidden');
+  });
+
+  $('.topic').click(selectTopicEvent);
+
+  $('#selected_area').change(changeTargetRadius);
+
+  $('.principal-button').click(postNewTarget);
+}
+
 $(document).ready(function() {
   initMap();
   displayTargets();
+  createTargetEvents();
 });

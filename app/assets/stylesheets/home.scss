@@ -68,6 +68,7 @@ body {
   font-weight: 700;
   border: none;
   margin-top: 30px;
+  display: inline-block;
 }
 
 .principal-field, .principal-button {
@@ -93,6 +94,62 @@ hr {
   margin-top: 10px;
   margin-bottom: 10px;
   border-top: 1px solid $border-color;
+}
+.create-target-top {
+  background: $principal-color;
+  color: white;
+  text-transform: uppercase;
+  padding: 10px 0px 10px 0px;
+}
+
+.create-target-middle {
+  text-align: center;
+  width: 200px;
+  display: inline-block;
+}
+
+.create-target-top .h4 {
+  margin: 0;
+}
+
+.back-button {
+  float: left;
+  padding-left: 16px;
+  cursor: pointer;
+}
+
+.create-target-icon {
+  display: inline-block;
+  margin-top: 30px;
+}
+
+.target-img {
+  margin-bottom: 5px;
+}
+
+.create-target-form {
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.select-topic.principal-field, .topic {
+  display: inline-block;
+  margin: 1;
+}
+
+.selected {
+  background: #f4f4f4;
+}
+
+.topic {
+  text-align: left;
+  display: inline-block;
+  height: auto;
+}
+
+.topic-img {
+  padding-left: 5px;
+  width: 20px;
 }
 
 @media only screen and (max-width: 1450px) {
