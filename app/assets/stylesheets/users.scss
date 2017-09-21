@@ -49,7 +49,7 @@ hr {
   font-size: small;
 }
 
-.home-left, .home-right {
+.home-left, .home-right, .home-left-new-target {
   box-sizing: border-box;
   display: inline-block;
   height: 100vh;
@@ -61,7 +61,7 @@ hr {
   height: 100vh;
 }
 
-.home-left {
+.home-left, .home-left-new-target {
   width: 25%;
   text-align: center;
   border: 1px solid #d4d4d4;

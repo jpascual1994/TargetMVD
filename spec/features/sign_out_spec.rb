@@ -30,7 +30,7 @@ RSpec.feature 'Sign Out', type: :feature, js: true do
     end
 
     scenario 'show not login message' do
-      expect(page).to have_content('You are not logged in.')
+      expect(page).to have_content('You need to sign in or sign up before continuing.')
     end
   end
 end

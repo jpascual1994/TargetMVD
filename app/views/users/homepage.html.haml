@@ -13,5 +13,38 @@
   .chats-section
   .img-footer
     = image_tag 'smilies.png', class: 'smiles-img'
+
+.home-left-new-target.hidden
+  .create-target-top
+    .back-button
+      <
+    .h4 Create target
+  .create-target-middle
+    .create-target-icon
+      = image_tag 'Target.png', class: 'target-img'
+      .principal-label Create new target
+
+    .create-target-form
+      .principal-label SPECIFY AREA LENGHT
+      %select{ id: 'selected_area', class: 'principal-field select-gender' }
+        - UserTarget::DEFAULT_AREAS.each do |radius|
+          %option{ value: radius }
+            ="#{radius} m"
+      .principal-label TARGET TITLE
+      %input{ type: 'text', id: 'new-target-title', placeholder: 'Choose a title for your target', class: 'principal-field'}
+      .principal-label SELECT A TOPIC
+      .select-topic.principal-field
+        What do you want to talk about?
+      .targets-list.hidden
+        - @topics.each do |topic|
+          .topic.principal-field{ data: {id: topic.id} }
+            = image_tag "#{topic.title}.png", class: 'topic-img'
+            = topic.title
+    .principal-button
+      .hidden.get-targets-path{ data: { path: user_targets_path } }
+      Create
+  .img-footer
+    = image_tag 'smilies.png', class: 'smiles-img'
+
 .home-right
   #map.mymap
