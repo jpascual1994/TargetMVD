@@ -34,6 +34,8 @@ gem 'figaro', '~> 1.1', '>= 1.1.1'
 
 gem 'responders', '~> 2.4'
 
+gem 'draper', '~> 3.0'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.6.1'
   gem 'faker', '~> 1.6.6'

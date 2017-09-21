@@ -17,7 +17,7 @@
         = f.password_field :password_confirmation, autocomplete: 'off', class: 'principal-field'
       .field
         = f.label :gender, class: 'principal-label'
-        = f.select :gender, User.default_genders, {}, class: 'principal-field select-gender'
+        = f.select :gender, UserDecorator.default_genders, {}, class: 'principal-field select-gender'
       .actions
         = f.submit 'Sign up', class: 'principal-button', data: { no_turbolink: true }
     %hr

@@ -18,8 +18,4 @@ class User < ApplicationRecord
       user.skip_confirmation!
     end
   end
-
-  def self.default_genders
-    genders.map { |key,value| [ key.humanize, key ] }
-  end
 end
