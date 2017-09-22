@@ -145,6 +145,23 @@ RSpec.describe UserTargetsController, type: :controller do
       end
     end
   end
+
+  describe '#destroy' do
+    let!(:target) { FactoryGirl.create(:user_target, user: user, topic: topic, latitude: 0, longitude: 0) }
+
+    before(:each) do
+      sign_in user
+      delete :destroy, params: { id: target.id }
+    end
+
+    it 'delete the target' do
+      expect(UserTarget.count).to eq(0)
+    end
+
+    it 'responds http 204' do
+      expect(response).to have_http_status(204)
+    end
+  end
 end
 
 def target_params (title, radius, topic_id, latitude, longitude)

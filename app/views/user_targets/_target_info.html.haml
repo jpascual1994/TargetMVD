@@ -1,0 +1,24 @@
+.home-left-delete-target
+  .delete-target-top
+    .back-button
+      <
+    .h4 Target info
+  .create-target-middle
+    .create-target-icon
+      = image_tag 'Target.png', class: 'target-img'
+      .principal-label Your Target
+
+    .delete-target-form
+      .principal-label AREA LENGHT
+      .principal-field
+        = target.area
+      .principal-label TARGET TITLE
+      .principal-field
+        = target.title
+      .principal-label TOPIC
+      .principal-field
+        = target.topic.title
+    .principal-button.destroy-target{ data: { target_id: target.id , user_targets_path: user_targets_path } }
+      Delete Target
+  .img-footer
+    = image_tag 'smilies.png', class: 'smiles-img'

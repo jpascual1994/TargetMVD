@@ -1,5 +1,6 @@
 class UserTargetsController < ApplicationController
   before_action :authenticate_user!
+  before_action :load_target, only: %i(show destroy)
   respond_to :json
 
   def index
@@ -16,9 +17,20 @@ class UserTargetsController < ApplicationController
     end
   end
 
+  def show
+  end
+
+  def destroy
+    @target.destroy
+  end
+
   private
 
   def target_params
     params.require(:user_target).permit(:area, :title, :latitude, :longitude, :topic_id).merge(user_id: current_user.id)
+  end
+
+  def load_target
+    @target = UserTarget.find(params[:id])
   end
 end

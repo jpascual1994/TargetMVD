@@ -1,0 +1,7 @@
+if ($('.home-left-delete-target').length == 0 ) {
+  $('.home-container').prepend("<%= j render partial: 'user_targets/target_info.html.haml', layout: false, locals: { target: @target } %>");
+} else {
+  $('.home-left-delete-target').replaceWith("<%= j render partial: 'user_targets/target_info.html.haml', layout: false, locals: { target: @target } %>");
+}
+$('.home-left-new-target').addClass('hidden');
+$('.home-left').addClass('hidden');

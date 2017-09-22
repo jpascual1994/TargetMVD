@@ -41,8 +41,7 @@
             .topic.principal-field{ data: {id: topic.id} }
               = image_tag "#{topic.title}.png", class: 'topic-img'
               = topic.title
-      .principal-button
-        .hidden.get-targets-path{ data: { path: user_targets_path } }
+      .principal-button{ data: { user_targets_path: user_targets_path } }
         Create
     .img-footer
       = image_tag 'smilies.png', class: 'smiles-img'

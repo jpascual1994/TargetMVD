@@ -12,5 +12,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :user_targets, only: %i(create index)
+  resources :user_targets, only: %i(create index show destroy)
 end

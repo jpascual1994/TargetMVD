@@ -6,6 +6,7 @@ var map;
 const default_lat = -34.906349;
 const default_lng = -56.19992;
 const targetColor = '#efc638';
+const selectedTargetColor = '#2fbcf7';
 const defautRadius = 50;
 
 var pos = {
@@ -14,6 +15,8 @@ var pos = {
 };
 
 var newTarget;
+var selectedTarget = null;
+var selectedTargetMarker = null;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -57,49 +60,71 @@ function initMap() {
 }
 
 function displayTargets() {
-  var route = $('.get-targets-path').data('path');
+  var route = $('.principal-button').data('user-targets-path');
   $.get(route).done(function(data) {
     $.each(data.user_targets, function(i, val) {
       var targetPos = {
         lat: val.lat,
         lng: val.lng
       }
-      showTarget(targetPos, val.radius, val.icon)
+      showTarget(targetPos, val.radius, val.icon, val.id, val.route)
     })
   })
 }
 
-function showTarget(position, radius, icon){
-  new google.maps.Circle({
+function showTarget(position, radius, icon, targetId, route){
+  var newTargetCircle = new google.maps.Circle({
     strokeWeight: 0,
     fillColor: targetColor,
     fillOpacity: 0.70,
     map: map,
     center: position,
-    radius: radius
-  })
-  new google.maps.Marker({
+    radius: radius,
+    targetId: targetId,
+    route: route
+  });
+
+  var newTargetMarker = new google.maps.Marker({
     position: position,
     map: map,
     icon: {
       url: icon,
       anchor: new google.maps.Point(6, 6)
-    }
-  })
+    },
+    targetId: targetId
+  });
+
+  newTargetCircle.addListener('click', function() {
+    deselectTarget();
+    this.setOptions({ fillColor: selectedTargetColor });
+    selectedTarget = this;
+    selectedTargetMarker = newTargetMarker;
+    targetInfo(targetId, route);
+  });
 };
 
 function createTarget(pos) {
   $('.home-left-new-target').removeClass('hidden');
+  $('#new-target-title').val('');
+  $('#selected_area').val(50);
+  newTarget.setRadius(50);
+  $('.select-topic').html('What do you want to talk about?');
+  $('.topic').removeClass('selected');
+  $('.targets-list').addClass('hidden');
   $('.home-left').addClass('hidden');
+  $('.home-left-delete-target').addClass('hidden');
   map.setCenter(pos);
   newTarget.setCenter(pos);
+  deselectTarget();
 }
 
 function backToHome() {
   $('.home-left-new-target').addClass('hidden');
+  $('.home-left-delete-target').addClass('hidden');
   $('.home-left').removeClass('hidden');
   newTarget.setCenter(null);
   removeErrorMsgs();
+  deselectTarget();
 }
 
 function selectTopicEvent() {
@@ -115,7 +140,7 @@ function changeTargetRadius() {
 
 function postNewTarget() {
   var center = newTarget.getCenter();
-  var url = $('.get-targets-path').data('path');
+  var url = $('.principal-button').data('user-targets-path');
   var radio = newTarget.getRadius();
 
   var data = {
@@ -132,7 +157,7 @@ function postNewTarget() {
 
   $.post(url,data).done(function(data) {
     var icon = data.target.icon;
-    showTarget(center, radio, icon);
+    showTarget(center, radio, icon, data.target.id, data.target.route);
     newTarget.setCenter(null);
     backToHome()
   }).fail(function(data) {
@@ -146,8 +171,37 @@ function removeErrorMsgs() {
   $('.error-msg').remove();
 }
 
+function deselectTarget() {
+  if(selectedTarget != null) {
+    selectedTarget.setOptions({ fillColor: targetColor });
+    selectedTarget = null;
+    selectedTargetMarker = null;
+  }
+}
+
+function targetInfo(targetId, route) {
+  $.get(route);
+  newTarget.setCenter(null);
+}
+
+function destroyTarget(route) {
+  var respond = confirm('You really want to delete the target?');
+  if (respond == true) {
+    $.ajax({
+      url: route,
+      type: 'DELETE',
+    }).done(function() {
+      selectedTarget.setCenter(null);
+      selectedTargetMarker.setMap(null);
+      backToHome();
+    }).fail(function() {
+      alert('Sorry, there was an error.');
+    });
+  }
+}
+
 function createTargetEvents() {
-  $('.back-button').click(backToHome)
+  $('.home-container').on('click', '.back-button', backToHome);
 
   $('.select-topic').click(function() {
     $('.targets-list').toggleClass('hidden');
@@ -160,8 +214,15 @@ function createTargetEvents() {
   $('.principal-button').click(postNewTarget);
 }
 
+function deleteTargetEvents() {
+  $('.home-container').on('click', '.destroy-target', function() {
+    destroyTarget(selectedTarget.route);
+  });
+}
+
 $(document).ready(function() {
   initMap();
   displayTargets();
   createTargetEvents();
+  deleteTargetEvents();
 });
