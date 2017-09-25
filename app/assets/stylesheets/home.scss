@@ -95,7 +95,7 @@ hr {
   margin-bottom: 10px;
   border-top: 1px solid $border-color;
 }
-.create-target-top {
+.create-target-top, .delete-target-top {
   background: $principal-color;
   color: white;
   text-transform: uppercase;
@@ -108,7 +108,7 @@ hr {
   display: inline-block;
 }
 
-.create-target-top .h4 {
+.create-target-top .h4, .delete-target-top .h4 {
   margin: 0;
 }
 
@@ -127,7 +127,7 @@ hr {
   margin-bottom: 5px;
 }
 
-.create-target-form {
+.create-target-form, .delete-target-form {
   display: inline-block;
   margin-top: 20px;
 }
@@ -150,6 +150,14 @@ hr {
 .topic-img {
   padding-left: 5px;
   width: 20px;
+}
+
+.delete-target-form .principal-field, .principal-button {
+  padding-top: 7px;
+}
+
+.principal-button {
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1450px) {
