@@ -34,11 +34,12 @@ RSpec.describe UserTargetsController, type: :controller do
       it 'responds with correct data' do
         expect(JSON.parse(response.body)['user_targets']).to eq([
           {
-            'id'=>target.id,
-            'lat'=>target.latitude,
-            'lng'=>target.longitude,
-            'radius'=>target.area,
-            'icon'=> ActionController::Base.helpers.image_path('Art.png')
+            'id' => target.id,
+            'lat' => target.latitude,
+            'lng' => target.longitude,
+            'radius' => target.area,
+            'icon' => ActionController::Base.helpers.image_path('Art.png'),
+            'route' => user_target_path(target)
           }
         ])
       end
