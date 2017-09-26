@@ -1,0 +1,12 @@
+.middle-section
+  .no-targets-section
+    %h4
+      = I18n.t(:create_first_target)
+    %p
+      = I18n.t(:most_popular_targets)
+    .popular-topics
+      - %w(Football Travel Music).each do |topic|
+        .topic-div
+          .topic-img
+            = image_tag "#{topic}.png"
+          = topic

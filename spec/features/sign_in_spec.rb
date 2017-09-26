@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Sign In', type: :feature, js: true do
-  let!(:user) { FactoryGirl.create( :user, password: '123456' ) }
+  let!(:user) { FactoryGirl.create( :user, password: '123456') }
 
   before (:each) do
     visit root_path
@@ -34,6 +34,30 @@ RSpec.feature 'Sign In', type: :feature, js: true do
 
       scenario 'Unconfirmed user redirect to root' do
         expect(page).to have_current_path(root_path)
+      end
+    end
+
+    context 'when user do his first login' do
+      background do
+        user.first_login = false
+        user.confirm
+        fill_form_and_click user.email, '123456'
+      end
+
+      scenario 'show create target instructions' do
+        expect(page).to have_content(I18n.t(:create_target_instructions))
+      end
+    end
+
+    context 'with not target created' do
+      background do
+        user.first_target = false
+        user.confirm
+        fill_form_and_click user.email, '123456'
+      end
+
+      scenario 'show create first target instructions' do
+        expect(page).to have_content(I18n.t(:create_first_target))
       end
     end
   end

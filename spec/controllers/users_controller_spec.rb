@@ -34,4 +34,28 @@ RSpec.describe UsersController, type: :controller do
       end
     end
   end
+
+  describe '#update' do
+    let!(:user) { FactoryGirl.create(:user, first_login: false) }
+
+    before(:each) do
+      user.confirm
+      sign_in user
+    end
+
+    context 'update first login ' do
+      before(:each) do
+        patch :update, params: { user: { first_login: 'true' } }
+        user.reload
+      end
+
+      it 'responds HTTP 200' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'update first login' do
+        expect(user.first_login).to be true
+      end
+    end
+  end
 end

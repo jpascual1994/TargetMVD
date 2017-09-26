@@ -18,6 +18,8 @@ var newTarget;
 var selectedTarget = null;
 var selectedTargetMarker = null;
 
+var firstLogin;
+
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: pos,
@@ -37,7 +39,7 @@ function initMap() {
         lng: position.coords.longitude
       };
 
-      map.setCenter(pos);
+      map.panTo(pos);
       marker.setPosition(pos);
     }, function() {
       // User has disable Geolocation
@@ -46,7 +48,7 @@ function initMap() {
   };
 
   map.addListener('click', function(e) {
-    createTarget(e.latLng)
+    createTarget(e.latLng);
   });
 
   newTarget = new google.maps.Circle({
@@ -56,11 +58,11 @@ function initMap() {
     fillOpacity: 0.70,
     map: map,
     radius: defautRadius
-  })
+  });
 }
 
 function displayTargets() {
-  var route = $('.principal-button').data('user-targets-path');
+  var route = $('.get-targets-path').data('path');
   $.get(route).done(function(data) {
     $.each(data.user_targets, function(i, val) {
       var targetPos = {
@@ -104,18 +106,13 @@ function showTarget(position, radius, icon, targetId, route){
 };
 
 function createTarget(pos) {
-  $('.home-left-new-target').removeClass('hidden');
-  $('#new-target-title').val('');
-  $('#selected_area').val(50);
-  newTarget.setRadius(50);
-  $('.select-topic').html('What do you want to talk about?');
-  $('.topic').removeClass('selected');
-  $('.targets-list').addClass('hidden');
-  $('.home-left').addClass('hidden');
-  $('.home-left-delete-target').addClass('hidden');
-  map.setCenter(pos);
-  newTarget.setCenter(pos);
-  deselectTarget();
+  if (firstLogin) {
+    refreshCreateForm();
+    newTarget.setRadius(50);
+    map.panTo(pos);
+    newTarget.setCenter(pos);
+    deselectTarget();
+  }
 }
 
 function backToHome() {
@@ -135,12 +132,12 @@ function selectTopicEvent() {
 }
 
 function changeTargetRadius() {
-  newTarget.setRadius(parseInt($('#selected_area option:selected').val()));
+  newTarget.setRadius(parseInt($('#selected-area option:selected').val()));
 }
 
 function postNewTarget() {
   var center = newTarget.getCenter();
-  var url = $('.principal-button').data('user-targets-path');
+  var url = $('.create-target.principal-button').data('user-targets-path');
   var radio = newTarget.getRadius();
 
   var data = {
@@ -159,7 +156,8 @@ function postNewTarget() {
     var icon = data.target.icon;
     showTarget(center, radio, icon, data.target.id, data.target.route);
     newTarget.setCenter(null);
-    backToHome()
+    backToHome();
+    $('.middle-section').replaceWith(data.chat_section);
   }).fail(function(data) {
     $.each(data.responseJSON, function(i,v) {
       $('.create-target-middle').append("<p class='error-msg'>"+ v +"</p>");
@@ -177,6 +175,15 @@ function deselectTarget() {
     selectedTarget = null;
     selectedTargetMarker = null;
   }
+}
+
+function refreshCreateForm(){
+  $('.home-left-new-target').removeClass('hidden');
+  $('#new-target-title').val('');
+  $('#selected-area').val(50);
+  $('.select-topic').html('What do you want to talk about?');
+  $('.topic').removeClass('selected');
+  $('.targets-list, .home-left, .home-left-delete-target').addClass('hidden');
 }
 
 function targetInfo(targetId, route) {
@@ -209,9 +216,9 @@ function createTargetEvents() {
 
   $('.topic').click(selectTopicEvent);
 
-  $('#selected_area').change(changeTargetRadius);
+  $('#selected-area').change(changeTargetRadius);
 
-  $('.principal-button').click(postNewTarget);
+  $('.home-left-new-target .principal-button').click(postNewTarget);
 }
 
 function deleteTargetEvents() {
@@ -220,9 +227,37 @@ function deleteTargetEvents() {
   });
 }
 
-$(document).ready(function() {
-  initMap();
+function activateMapEvents() {
+  $('.welcome-screen').addClass('hidden');
   displayTargets();
   createTargetEvents();
   deleteTargetEvents();
+}
+
+function editFirstLoginEvent() {
+  $('.welcome-bottom .principal-button').click(function() {
+    var route = $(this).data('edit-user-path');
+    var data = { user: { first_login: 'true' } };
+
+    $.ajax({
+      url: route,
+      data: data,
+      type: 'PATCH',
+    }).done(function() {
+      firstLogin = true;
+      activateMapEvents();
+      $('.home-left-top').removeClass('hidden');
+    })
+  });
+}
+
+$(document).ready(function() {
+  firstLogin = $('.home-container').data('first-login');
+  initMap();
+  editFirstLoginEvent();
+  if (firstLogin) {
+    activateMapEvents();
+  } else {
+    $('.home-left-top').addClass('hidden');
+  }
 });

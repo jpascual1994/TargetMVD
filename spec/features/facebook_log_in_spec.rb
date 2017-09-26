@@ -20,8 +20,8 @@ feature 'Confirm Account', js: true do
       expect(page).to have_current_path( homepage_users_path )
     end
 
-    scenario 'show the user name' do
-      expect(page).to have_content( User.last.name )
+    scenario 'show target tutorial' do
+      expect(page).to have_content(I18n.t(:create_target_instructions))
     end
   end
 

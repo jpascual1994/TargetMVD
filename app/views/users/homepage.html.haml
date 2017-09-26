@@ -1,19 +1,25 @@
-.home-container
+.home-container{ data: { first_login: @user.first_login.to_s } }
   .home-left
-    .home-title-sec
-      .h3 TARGET
-    .profile-img
-    = @user.name
-    .hidden.get-targets-path{ data: { path: user_targets_path } }
-    .edit-logout
-      = link_to 'Edit', edit_user_registration_path, { class: 'edit-label' }
-      \/
-      = link_to 'Logout', destroy_user_session_path, { method: :delete, class: 'logout-label' }
-    %hr
-
-    .chats-section
-    .img-footer
-      = image_tag 'smilies.png', class: 'smiles-img'
+    .home-left-top
+      .home-title-sec
+        .h3 TARGET
+      .profile-img
+      = @user.name
+      .hidden.get-targets-path{ data: { path: user_targets_path } }
+      .edit-logout
+        = link_to 'Edit', edit_user_registration_path, { class: 'edit-label' }
+        \/
+        = link_to 'Logout', destroy_user_session_path, { method: :delete, class: 'logout-label' }
+      %hr
+      - if @user.first_target
+        .chats-section
+          .no-matches
+            = I18n.t(:no_matches)
+      - else
+        = render 'no_targets_created'
+      .img-footer
+        = image_tag 'smilies.png', class: 'smiles-img'
+    = render 'welcome_screen', user: @user
 
   .home-left-new-target.hidden
     .create-target-top
@@ -27,7 +33,7 @@
 
       .create-target-form
         .principal-label SPECIFY AREA LENGHT
-        %select{ id: 'selected_area', class: 'principal-field select-gender' }
+        %select#selected-area.principal-field.select-gender
           - UserTarget::DEFAULT_AREAS.each do |radius|
             %option{ value: radius }
               ="#{radius} m"
@@ -41,7 +47,7 @@
             .topic.principal-field{ data: {id: topic.id} }
               = image_tag "#{topic.title}.png", class: 'topic-img'
               = topic.title
-      .principal-button{ data: { user_targets_path: user_targets_path } }
+      .create-target.principal-button{ data: { user_targets_path: user_targets_path } }
         Create
     .img-footer
       = image_tag 'smilies.png', class: 'smiles-img'

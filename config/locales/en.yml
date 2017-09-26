@@ -27,3 +27,8 @@ en:
   only_more_step: 'Only one more step to start enjoying'
   email_sent: 'We’ve sent an email to confirm your account.'
   check_mail: 'Please check your inbox.'
+  create_first_target: 'Create your first target by clicking wherever on the map.'
+  most_popular_targets: 'Psss!, these are the most popular targets:'
+  create_target_instructions: 'Create a  target  by clicking wherever on the map, specify  the ratio and and a topic: Travel, Dating, Music, etc.'
+  target_explanation: 'will  start a chat whenever you’ve a match. You can always dismiss a conversation if you’re not interested.'
+  no_matches: 'There are not matches for your targets yet.'
