@@ -11,7 +11,7 @@ RSpec.describe UserTargetsController, type: :controller do
   end
 
   describe 'GET #index' do
-    let!(:target) { FactoryGirl.create(:user_target, user: user, topic: topic, latitude: 0, longitude: 0) }
+    let!(:target) { FactoryGirl.create(:user_target, user: user, topic: topic) }
 
     context 'with user signed in' do
       before(:each) do
@@ -145,10 +145,27 @@ RSpec.describe UserTargetsController, type: :controller do
         end
       end
     end
+
+    context 'when there are too many targets created' do
+      let(:new_target) { target_params('title', 50, topic.id, 0, 0) }
+
+      before(:each) do
+        FactoryGirl.create_list(:user_target,10, user: user, topic: topic)
+        post :create, params: new_target, xhr: true
+      end
+
+      it 'responds HTTP 400' do
+        expect(response).to have_http_status(400)
+      end
+
+      it 'responds with too many targets error' do
+        expect(response.body).to include('Too many targets created')
+      end
+    end
   end
 
   describe '#destroy' do
-    let!(:target) { FactoryGirl.create(:user_target, user: user, topic: topic, latitude: 0, longitude: 0) }
+    let!(:target) { FactoryGirl.create(:user_target, user: user, topic: topic) }
 
     before(:each) do
       sign_in user
