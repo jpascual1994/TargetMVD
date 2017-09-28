@@ -1,6 +1,7 @@
 class UserTargetsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_target, only: %i(show destroy)
+  after_action :update_first_target, only: :create
   respond_to :json
 
   def index
@@ -32,5 +33,9 @@ class UserTargetsController < ApplicationController
 
   def load_target
     @target = UserTarget.find(params[:id])
+  end
+
+  def update_first_target
+    current_user.update(first_target: true) unless current_user.first_target
   end
 end

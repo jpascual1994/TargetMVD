@@ -1,0 +1,25 @@
+.welcome-screen
+  .middle-section
+    .welcome-top
+      .smilies_img
+        = image_tag 'smilies.png', class: 'target-img'
+      .welcome-title
+        %h4
+          = I18n.t(:welcome)
+        %h4
+          %strong TARGET
+      .targe-slogan
+        %h5
+          = I18n.t(:target_slogan)
+    .welcome-middle
+      %ul.tutorial-list
+        %li
+          %span
+            = I18n.t(:create_target_instructions)
+        %li
+          %span
+            %strong TARGET
+            = I18n.t(:target_explanation)
+    .welcome-bottom
+      .welcome-button.principal-button{ data: { edit_user_path: users_path } }
+        OK; GOT IT!
