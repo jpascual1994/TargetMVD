@@ -69,6 +69,9 @@ hr {
 }
 
 .home-title-sec .h3 {
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 10px;
   font-weight: 600;
 }
 
@@ -89,6 +92,7 @@ hr {
 
 .edit-label {
   color: $principal-color;
+  cursor: pointer;
 }
 
 .img-footer {
@@ -162,6 +166,20 @@ hr {
   width: 250px;
 }
 
+.edit-user-form {
+  margin-top: 20px;
+}
+
+.edit-fb-account {
+  display: inline-block;
+  margin: 50px 0;
+  width: 250px;
+}
+
+.delete-account-link {
+  display: block;
+}
+
 @media only screen and (max-width: 700px) {
   .home-left, .home-left-new-target, .home-left-delete-target {
     width: 250px;
@@ -177,6 +195,10 @@ hr {
 
   .targe-slogan h5 {
     font-size: 14px;
+  }
+
+  .edit-fb-account {
+    width: 200px;
   }
 }
 
@@ -207,6 +229,10 @@ hr {
 
   .welcome-middle {
     width: 300px;
+  }
+
+  .edit-fb-account {
+    width: 250px;
   }
 }
 

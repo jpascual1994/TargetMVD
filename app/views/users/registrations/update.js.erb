@@ -1,0 +1,6 @@
+$('#error-explanation').remove();
+<% if resource.errors.empty? %>
+  backToHome();
+<% else %>
+  $('.edit-user-form').append('<%= j devise_error_messages! %>');
+<% end %>

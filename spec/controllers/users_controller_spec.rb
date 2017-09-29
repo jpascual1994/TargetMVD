@@ -45,7 +45,7 @@ RSpec.describe UsersController, type: :controller do
 
     context 'update first login ' do
       before(:each) do
-        patch :update, params: { user: { first_login: 'true' } }
+        patch :update, params: { id: user.id, user: { first_login: 'true' } }
         user.reload
       end
 
