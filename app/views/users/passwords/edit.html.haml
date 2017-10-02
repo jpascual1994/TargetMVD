@@ -1,0 +1,29 @@
+.left-section
+  .left-container
+    .top-subsection
+      .img-smilies
+        = image_tag 'smilies.png'
+      %h2
+        = I18n.t(:target_title)
+      %h3
+        = I18n.t(:target_slogan)
+      %p
+        = I18n.t(:why_taget)
+    .form-container
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+        = devise_error_messages!
+        = f.hidden_field :reset_password_token
+        .field
+          = f.label :password, 'New password', class: 'principal-label'
+          = f.password_field :password, autofocus: true, autocomplete: 'off', class: 'principal-field'
+        .field
+          = f.label :password_confirmation, 'Confirm new password', class: 'principal-label'
+          = f.password_field :password_confirmation, autocomplete: 'off', class: 'principal-field'
+        .actions
+          = f.submit 'Change my password', class: 'principal-button'
+    .bottom-subsec
+      = link_to 'Connect with facebook', user_facebook_omniauth_authorize_path, { class: 'principal-label facebook-link' }
+      %hr
+      = link_to 'SIGN UP', new_user_registration_path, { class: 'principal-label' }
+.right-section
+  = render 'home/home_index_right'

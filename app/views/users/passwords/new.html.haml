@@ -9,19 +9,13 @@
       %p
         = I18n.t(:why_taget)
     .form-container
-      = form_for(User.new, url: session_path(:user), method: :post) do |f|
-        - flash.each do |key, value|
-          .error-msg
-            = value
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        = devise_error_messages!
         .field
           = f.label :email, class: 'principal-label'
-          = f.email_field :email, autofocus: true,  class: 'principal-field'
-        .field
-          = f.label :password, class: 'principal-label'
-          = f.password_field :password, autocomplete: 'off', class: 'principal-field'
+          = f.email_field :email, autofocus: true, class: 'principal-field'
         .actions
-          = f.submit 'Sign in', class: 'principal-button'
-        = link_to 'Forgot your password?', new_user_password_path, { class: 'principal-label reset-password-label' }
+        = f.submit 'Recover Password', class: 'principal-button'
     .bottom-subsec
       = link_to 'Connect with facebook', user_facebook_omniauth_authorize_path, { class: 'principal-label facebook-link' }
       %hr
