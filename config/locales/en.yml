@@ -33,3 +33,4 @@ en:
   target_explanation: 'will  start a chat whenever you’ve a match. You can always dismiss a conversation if you’re not interested.'
   no_matches: 'There are not matches for your targets yet.'
   facebook_account: 'Your account was created by facebook'
+  reset_email_sent: 'You will receive an email with instructions on how to reset your password in a few minutes.'
