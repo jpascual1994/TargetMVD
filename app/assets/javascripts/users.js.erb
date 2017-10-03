@@ -116,9 +116,9 @@ function createTarget(pos) {
 }
 
 function backToHome() {
-  $('.home-left-new-target').addClass('hidden');
-  $('.home-left-delete-target').addClass('hidden');
-  $('.home-left').removeClass('hidden');
+  $('.home-left-new-target, .home-left-delete-target').addClass('hidden');
+  $('.edit-user-container').remove();
+  $('.home-left-top, .home-left').removeClass('hidden');
   newTarget.setCenter(null);
   removeErrorMsgs();
   deselectTarget();
@@ -251,10 +251,18 @@ function editFirstLoginEvent() {
   });
 }
 
+function editUserEvents() {
+  $('.edit-label').click(function() {
+    var url = $(this).data('user-edit-path');
+    $.get(url);
+  });
+}
+
 $(document).ready(function() {
   firstLogin = $('.home-container').data('first-login');
   initMap();
   editFirstLoginEvent();
+  editUserEvents();
   if (firstLogin) {
     activateMapEvents();
   } else {

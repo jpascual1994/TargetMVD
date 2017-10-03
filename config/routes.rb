@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resource :users, only: [:update] do
+  resources :users, only: [:update] do
     collection do
       get :homepage
     end

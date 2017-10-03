@@ -1,0 +1,2 @@
+$('.home-left-top').addClass('hidden');
+$('.home-left').prepend("<%= j render partial: 'users/registrations/edit_user.html.haml', layout: false, locals: { user: @user } %>")

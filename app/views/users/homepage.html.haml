@@ -7,7 +7,7 @@
       = @user.name
       .hidden.get-targets-path{ data: { path: user_targets_path } }
       .edit-logout
-        = link_to 'Edit', edit_user_registration_path, { class: 'edit-label' }
+        .edit-label{ data: { user_edit_path: edit_user_registration_path} } Edit
         \/
         = link_to 'Logout', destroy_user_session_path, { method: :delete, class: 'logout-label' }
       %hr

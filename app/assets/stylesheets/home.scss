@@ -95,21 +95,22 @@ hr {
   margin-bottom: 10px;
   border-top: 1px solid $border-color;
 }
-.create-target-top, .delete-target-top {
+
+.create-target-top, .delete-target-top, .edit-user-top {
   background: $principal-color;
   color: white;
   text-transform: uppercase;
   padding: 10px 0px 10px 0px;
+
+  .h4 {
+    margin: 0;
+  }
 }
 
 .create-target-middle {
   text-align: center;
   width: 200px;
   display: inline-block;
-}
-
-.create-target-top .h4, .delete-target-top .h4 {
-  margin: 0;
 }
 
 .back-button {

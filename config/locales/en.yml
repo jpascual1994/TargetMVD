@@ -32,3 +32,4 @@ en:
   create_target_instructions: 'Create a  target  by clicking wherever on the map, specify  the ratio and and a topic: Travel, Dating, Music, etc.'
   target_explanation: 'will  start a chat whenever you’ve a match. You can always dismiss a conversation if you’re not interested.'
   no_matches: 'There are not matches for your targets yet.'
+  facebook_account: 'Your account was created by facebook'
