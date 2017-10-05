@@ -12,6 +12,8 @@
     = javascript_include_tag "//maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_KEY']}"
     = javascript_include_tag 'application'
     = javascript_include_tag 'users'
+    = javascript_include_tag 'cable.js'
+    = javascript_include_tag 'cable/subscriptions/notifications.js'
     = javascript_include_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'
   %body
     = yield

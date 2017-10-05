@@ -140,7 +140,7 @@ function postNewTarget() {
   var url = $('.create-target.principal-button').data('user-targets-path');
   var radio = newTarget.getRadius();
 
-  var data = {
+  var params = {
     user_target: {
       area: radio,
       title: $('#new-target-title').val(),
@@ -152,17 +152,18 @@ function postNewTarget() {
 
   removeErrorMsgs();
 
-  $.post(url,data).done(function(data) {
-    var icon = data.target.icon;
-    showTarget(center, radio, icon, data.target.id, data.target.route);
-    newTarget.setCenter(null);
-    backToHome();
-    $('.middle-section').replaceWith(data.chat_section);
-  }).fail(function(data) {
-    $.each(data.responseJSON, function(i,v) {
-      $('.create-target-middle').append("<p class='error-msg'>"+ v +"</p>");
+  $.post(url, params, null, 'json')
+    .done(function(data) {
+      var target = data.target;
+      showTarget(center, radio, target.icon, target.id, target.route);
+      newTarget.setCenter(null);
+      backToHome();
+      $('.middle-section').replaceWith(data.chat_section);
+    }).fail(function(data) {
+      $.each(data.responseJSON, function(i,v) {
+        $('.create-target-middle').append("<p class='error-msg'>"+ v +"</p>");
+      })
     })
-  })
 }
 
 function removeErrorMsgs() {
@@ -258,11 +259,18 @@ function editUserEvents() {
   });
 }
 
+function newMatchModalEvents() {
+  $('.new-match-modal .skip-link').click(function() {
+    $('.new-match-modal').modal('hide');
+  });
+}
+
 $(document).ready(function() {
   firstLogin = $('.home-container').data('first-login');
   initMap();
   editFirstLoginEvent();
   editUserEvents();
+  newMatchModalEvents();
   if (firstLogin) {
     activateMapEvents();
   } else {

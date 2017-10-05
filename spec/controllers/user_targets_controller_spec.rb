@@ -162,6 +162,52 @@ RSpec.describe UserTargetsController, type: :controller do
         expect(response.body).to include('Too many targets created')
       end
     end
+
+    context 'when there is another target in the same area' do
+      let!(:user2) { FactoryGirl.create(:user) }
+      let!(:user2target) { FactoryGirl.create(:user_target, user: user2, topic: topic) }
+
+      context 'with same topic' do
+        let(:new_target) { target_params('title', 50, topic.id, 0, 0) }
+
+        before(:each) do
+          post :create, params: new_target, xhr: true
+        end
+
+        it 'create a new target' do
+          expect(UserTarget.count).to eq(2)
+        end
+
+        it 'create two news UserMatches' do
+          expect(UserMatch.count).to eq(2)
+        end
+
+        it 'create a match' do
+          expect(Match.count).to eq(1)
+        end
+      end
+
+      context 'with different topic' do
+        let!(:topic2) { FactoryGirl.create(:topic, title: 'Football') }
+        let(:new_target) { target_params('title', 50, topic2.id, 0, 0) }
+
+        before(:each) do
+          post :create, params: new_target, xhr: true
+        end
+
+        it 'create a new target' do
+          expect(UserTarget.count).to eq(2)
+        end
+
+        it 'doesn\'t create a new UserMatch' do
+          expect(UserMatch.count).to eq(0)
+        end
+
+        it 'doesn\'t create a match' do
+          expect(Match.count).to eq(0)
+        end
+      end
+    end
   end
 
   describe '#destroy' do
@@ -169,7 +215,7 @@ RSpec.describe UserTargetsController, type: :controller do
 
     before(:each) do
       sign_in user
-      delete :destroy, params: { id: target.id }
+      delete :destroy, params: { id: target.id }, format: :json
     end
 
     it 'delete the target' do

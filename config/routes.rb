@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   end
 
   resources :user_targets, only: %i(create index show destroy)
+
+  mount ActionCable.server => '/cable'
 end

@@ -161,6 +161,37 @@ hr {
   cursor: pointer;
 }
 
+.new-match-modal {
+  .modal-dialog {
+    width: 300px;
+    margin-top: 100px;
+  }
+
+  .modal-content {
+    text-align: center;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+  }
+
+  .modal-smile-img {
+    margin-top: 20px;
+    width: 150px;
+  }
+
+  .modal-button {
+    background: #efc537;
+    border: none;
+    margin-bottom: 5px;
+  }
+
+  .skip-link {
+    margin-bottom: 10px;
+    cursor: pointer;
+    display: inline-block;
+  }
+}
+
 @media only screen and (max-width: 1450px) {
   .right-section {
       padding: 60px 60px 60px 60px;
