@@ -222,8 +222,8 @@ RSpec.describe UserTargetsController, type: :controller do
       expect(UserTarget.count).to eq(0)
     end
 
-    it 'responds http 204' do
-      expect(response).to have_http_status(204)
+    it 'responds http 200' do
+      expect(response).to have_http_status(200)
     end
   end
 end

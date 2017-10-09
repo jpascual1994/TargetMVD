@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def homepage
     @user = current_user
     @topics = Topic.all
+    @current_matches = @user.matches
   end
 
   def update

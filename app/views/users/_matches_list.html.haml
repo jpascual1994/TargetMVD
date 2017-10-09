@@ -1,0 +1,20 @@
+- if current_matches.empty?
+  .no-matches
+    = I18n.t(:no_matches)
+- else
+  .hompage-chat-label Chat
+  .my-matches-list
+    - current_matches.each do |match|
+      .match
+        - if match.first_target.user_id == current_user.id
+          - target = match.second_target
+        - else
+          - target = match.first_target
+        .match-left
+          .user-name
+            = target.user.name
+          .target-title
+            = target.title
+        .match-right
+          .match-topic
+            = image_tag "#{target.topic.title}x2.png", class: 'match-topic-img'

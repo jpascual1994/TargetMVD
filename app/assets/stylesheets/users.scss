@@ -180,7 +180,63 @@ hr {
   display: block;
 }
 
+.chats-section {
+  padding: 0px 10px;
+
+  .match:last-child {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  }
+}
+
+.match {
+  text-align: left;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  padding-left: 40px;
+
+  .match-left, .user-name, .target-title {
+    width: 200px;
+    display: inline-block;
+  }
+
+  .match-left {
+    text-align: left;
+  }
+
+  .match-right {
+    float: right;
+    padding: 7px 35px 0 0;
+  }
+
+  .user-name {
+    font-weight: 600;
+  }
+
+  .match-topic {
+    width: 30px;
+    text-align: center;
+  }
+
+  .match-topic-img {
+    height: 25px;
+  }
+}
+
+.hompage-chat-label {
+  font-weight: 700;
+  font-size: small;
+  margin: 50px 0 10px 0;
+}
+
 @media only screen and (max-width: 700px) {
+  .match {
+    .match-left, .match-topic, .user-name, .target-title {
+       width: 50px;
+    }
+
+    .match-right {
+      padding: 7px 10px 0 0;
+    }
+  }
   .home-left, .home-left-new-target, .home-left-delete-target {
     width: 250px;
   }

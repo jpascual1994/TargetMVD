@@ -13,8 +13,7 @@
       %hr
       - if @user.first_target
         .chats-section
-          .no-matches
-            = I18n.t(:no_matches)
+          = render 'matches_list', current_matches: @current_matches
       - else
         = render 'no_targets_created'
       .img-footer

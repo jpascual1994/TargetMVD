@@ -158,7 +158,7 @@ function postNewTarget() {
       showTarget(center, radio, target.icon, target.id, target.route);
       newTarget.setCenter(null);
       backToHome();
-      $('.middle-section').replaceWith(data.chat_section);
+      $('.chats-section').html(data.chat_section);
     }).fail(function(data) {
       $.each(data.responseJSON, function(i,v) {
         $('.create-target-middle').append("<p class='error-msg'>"+ v +"</p>");
@@ -198,7 +198,8 @@ function destroyTarget(route) {
     $.ajax({
       url: route,
       type: 'DELETE',
-    }).done(function() {
+    }).done(function(data) {
+      $('.chats-section').html(data.chat_section);
       selectedTarget.setCenter(null);
       selectedTargetMarker.setMap(null);
       backToHome();

@@ -13,6 +13,7 @@ class UserTargetsController < ApplicationController
 
     if @user_target.save
       check_new_matches(@user_target)
+      @current_matches = current_user.matches
       render :create
     else
       render status: :bad_request, json: @user_target.errors.full_messages
@@ -24,6 +25,8 @@ class UserTargetsController < ApplicationController
 
   def destroy
     @target.destroy
+    @current_matches = current_user.matches
+    render :destroy
   end
 
   private
