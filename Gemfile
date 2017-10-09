@@ -36,7 +36,12 @@ gem 'responders', '~> 2.4'
 
 gem 'draper', '~> 3.0'
 
+gem 'geokit-rails', '~> 2.3'
+
+gem 'puma', '~> 3.10'
+
 group :development, :test do
+  gem 'pry-rails', '~> 0.3.4'
   gem 'rspec-rails', '~> 3.6.1'
   gem 'faker', '~> 1.6.6'
   gem 'database_cleaner', '~> 1.5', '>= 1.5.3'

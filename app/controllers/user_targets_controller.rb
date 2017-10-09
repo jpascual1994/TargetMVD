@@ -12,6 +12,7 @@ class UserTargetsController < ApplicationController
     @user_target = UserTarget.new(target_params)
 
     if @user_target.save
+      check_new_matches(@user_target)
       render :create
     else
       render status: :bad_request, json: @user_target.errors.full_messages
@@ -37,5 +38,9 @@ class UserTargetsController < ApplicationController
 
   def update_first_target
     current_user.update(first_target: true) unless current_user.first_target
+  end
+
+  def check_new_matches(new_target)
+    CheckNewMatchesService.new(new_target, current_user).check_new_matches
   end
 end

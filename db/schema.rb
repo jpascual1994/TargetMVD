@@ -10,15 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170925183651) do
+ActiveRecord::Schema.define(version: 20171003182107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "matches", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "first_target_id"
+    t.bigint "second_target_id"
+    t.index ["first_target_id"], name: "index_matches_on_first_target_id"
+    t.index ["second_target_id"], name: "index_matches_on_second_target_id"
+  end
 
   create_table "topics", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_matches", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "match_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["match_id"], name: "index_user_matches_on_match_id"
+    t.index ["user_id"], name: "index_user_matches_on_user_id"
   end
 
   create_table "user_targets", force: :cascade do |t|
