@@ -95,11 +95,18 @@ hr {
   cursor: pointer;
 }
 
-.img-footer {
+.img-footer, .chat-footer {
   position: absolute;
-  bottom: 10px;
   text-align: center;
   width: 100%;
+}
+
+.img-footer {
+  bottom: 10px;
+}
+
+.chat-footer {
+  bottom: 0;
 }
 
 .smiles-img {
@@ -227,6 +234,94 @@ hr {
   margin: 50px 0 10px 0;
 }
 
+.home-left-chat-section {
+  .chat-section {
+    overflow-y: scroll;
+    max-height: calc(100vh - 245px);
+  }
+
+  .topic-info {
+    margin: 15px 10px 50px 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #c7c7c7;
+  }
+
+  .left-topic-info {
+    float: left;
+    padding-left: 25px
+  }
+
+  .right-topic-info {
+    display: inline-block;
+    margin-left: -40px;
+  }
+
+  .topic-info-img {
+    height: 25px;
+    margin-top: 5px;
+  }
+
+  .message {
+    width: 190px;
+    margin-bottom: 10px;
+  }
+
+  .my-message {
+    margin-left: 140px;
+    text-align: right;
+
+    .message-text {
+      display: inline-block;
+      text-align: right;
+      background: #f4f4f4;
+    }
+  }
+
+  .message-text {
+    padding: 5px;
+    width: fit-content;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: none;
+    max-width: 150px;
+  }
+
+  .message-time {
+    display: inline-block;
+    font-size: x-small;
+    margin-top: 5px;
+  }
+
+  .his-message {
+    text-align: left;
+
+    .message-time {
+      margin-top: 8px;
+      margin-left: 3px;
+    }
+
+    .message-text {
+      display: inline-block;
+      background: #efc737;
+      margin-left: 10px;
+      float: left;
+    }
+  }
+
+  .chat-footer {
+    height: 90px;
+    background: #efefef;
+  }
+
+  .new-message-box {
+    height: 40px;
+    width: 90%;
+    margin-top: 25px;
+    border: 1px solid #979797;
+  }
+}
+
 @media only screen and (max-width: 700px) {
   .match {
     .match-left, .match-topic, .user-name, .target-title {
@@ -237,6 +332,7 @@ hr {
       padding: 7px 10px 0 0;
     }
   }
+
   .home-left, .home-left-new-target, .home-left-delete-target {
     width: 250px;
   }
@@ -256,11 +352,14 @@ hr {
   .edit-fb-account {
     width: 200px;
   }
+
+  .message.my-message {
+    margin-left: calc(100% - 200px);
+  }
 }
 
 @media only screen and (max-width: 500px) {
   .home-container {
-    padding-bottom: 50px;
     min-height: 800px;
     height: auto;
     position: relative;
@@ -289,6 +388,21 @@ hr {
 
   .edit-fb-account {
     width: 250px;
+  }
+
+  .img-footer {
+    display: none;
+  }
+
+  .home-left-chat-section {
+    .chat-section {
+      height: 370px;
+    }
+
+    .chat-footer {
+      position: initial;
+      margin-bottom: -40px;
+    }
   }
 }
 

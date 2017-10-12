@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_many :user_targets, dependent: :destroy
   has_many :user_matches
   has_many :matches, through: :user_matches
+  has_many :chats, through: :matches
+  has_many :messages, through: :chats
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

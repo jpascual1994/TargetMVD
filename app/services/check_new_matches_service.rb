@@ -25,7 +25,8 @@ class CheckNewMatchesService
   def send_new_match_notification(user, new_match_with, new_matches_count)
     NotificationsChannel.broadcast_to(
       user,
-      modal_body: (render_new_match_modal(new_match_with, new_matches_count))
+      modal_body: (render_new_match_modal(new_match_with, new_matches_count)),
+      chat_section: render_chats
     )
   end
 
@@ -33,6 +34,11 @@ class CheckNewMatchesService
 
   def render_new_match_modal(new_match_with, new_matches_count)
     ActionController::Base.new.render_to_string 'user_targets/_new_match_modal', layout: false,
-        locals: { new_match_with: new_match_with, new_matches_count: new_matches_count }
+        locals: { new_match_with: new_match_with, new_matches_count: new_matches_count, match_id: @new_target.matches.last.id }
+  end
+
+  def render_chats
+    ApplicationController.renderer.render partial: 'users/matches_list', layout: false,
+        locals: { current_matches: @current_user.matches, user: @current_user }
   end
 end

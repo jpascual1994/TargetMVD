@@ -156,4 +156,5 @@ RSpec.configure do |config|
 =end
   config.order = :random
   config.include(OmniauthMacros)
+  config.include(UserWithMatchMacros)
 end
