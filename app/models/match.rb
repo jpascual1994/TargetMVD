@@ -5,4 +5,8 @@ class Match < ApplicationRecord
   has_one :chat, dependent: :destroy
 
   before_save :build_chat
+
+  def other_user_target(user)
+    first_target.user == user ? second_target : first_target
+  end
 end

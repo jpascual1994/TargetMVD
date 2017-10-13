@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe ChatsController, type: :controller do
   describe "#show" do
+    let(:user) { User.first }
+    let(:chat) { Chat.first }
     before(:each) do
       create_user_with_match
-      user = User.first
-      chat = Chat.first
       user.confirm
       sign_in user
       get :show, params: { id: chat.id }, xhr: true

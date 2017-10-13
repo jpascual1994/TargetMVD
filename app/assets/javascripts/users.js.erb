@@ -220,9 +220,8 @@ function openChat() {
       received: function(data) {
         var userId = $('.chat-middle').data('user-id');
         $('.chat-section').append(data.new_message);
-        if (data.sender !== userId) {
+        if (data.sender !== userId)
           $('.chat-section .message').last().removeClass('my-message').addClass('his-message');
-        }
       }
     });
   });
@@ -233,8 +232,8 @@ function sendMessage(message) {
   var user = chatMiddle.data('user-id');
   var chat = chatMiddle.data('chat-id');
   var url = chatMiddle.data('message-path');
-  var data = { message:
-    {
+  var data = {
+    message: {
       text: message,
       user_id: user,
       chat_id: chat

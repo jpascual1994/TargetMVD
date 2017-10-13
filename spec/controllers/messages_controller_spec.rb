@@ -3,10 +3,11 @@ require 'rails_helper'
 RSpec.describe MessagesController, type: :controller do
   describe '#create' do
     context 'with valid params' do
+      let(:user) { User.first }
+      let(:chat) { Chat.first }
+
       before(:each) do
         create_user_with_match
-        user = User.first
-        chat = Chat.first
         user.confirm
         sign_in user
         post :create, params: { message: { text: 'hola', chat_id: chat.id, user_id: user.id } }, xhr: true

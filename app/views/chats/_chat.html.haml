@@ -3,21 +3,17 @@
     .back-button
       <
     .h4 Chat
-  .chat-middle{ data: { message_path: messages_path, user_id: current_user.id, chat_id: match.chat.id } }
+  .chat-middle{ data: { message_path: messages_path, user_id: current_user.id, chat_id: chat.id } }
     .topic-info
       .left-topic-info
-        = image_tag "#{match.first_target.topic.title}x2.png", class: 'topic-info-img'
+        = image_tag "#{chat.match.first_target.topic.title}x2.png", class: 'topic-info-img'
       .right-topic-info
-        - if match.first_target.user_id == current_user.id
-          - target = match.second_target
-        - else
-          - target = match.first_target
         .user-name
           = target.user.name
         .target-title
           = target.title
     .chat-section
-      - match.chat.messages.each do |message|
+      - chat.messages.each do |message|
         = render 'message.html.haml', message: message, user: current_user
   .chat-footer
-    %input{ type: 'text', class: 'new-message-box'}
+    %input.new-message-box{ type: 'text' }
