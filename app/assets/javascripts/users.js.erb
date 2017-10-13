@@ -112,6 +112,7 @@ function createTarget(pos) {
     map.panTo(pos);
     newTarget.setCenter(pos);
     deselectTarget();
+    closeChat();
   }
 }
 
@@ -119,9 +120,11 @@ function backToHome() {
   $('.home-left-new-target, .home-left-delete-target').addClass('hidden');
   $('.edit-user-container').remove();
   $('.home-left-top, .home-left').removeClass('hidden');
+  $('.home-left-chat-section').remove();
   newTarget.setCenter(null);
   removeErrorMsgs();
   deselectTarget();
+  closeChat();
 }
 
 function selectTopicEvent() {
@@ -209,6 +212,43 @@ function destroyTarget(route) {
   }
 }
 
+function openChat() {
+  var url = $(this).data('show-chat-url');
+  $.get(url).done(function() {
+    var chatId = $('.chat-middle').data('chat-id');
+    App.chatChannel = App.cable.subscriptions.create({ channel: 'ChatChannel', chat_id: chatId }, {
+      received: function(data) {
+        var userId = $('.chat-middle').data('user-id');
+        $('.chat-section').append(data.new_message);
+        if (data.sender !== userId) {
+          $('.chat-section .message').last().removeClass('my-message').addClass('his-message');
+        }
+      }
+    });
+  });
+}
+
+function sendMessage(message) {
+  var chatMiddle = $('.chat-middle');
+  var user = chatMiddle.data('user-id');
+  var chat = chatMiddle.data('chat-id');
+  var url = chatMiddle.data('message-path');
+  var data = { message:
+    {
+      text: message,
+      user_id: user,
+      chat_id: chat
+    }
+  };
+  $.post(url,data);
+}
+
+function closeChat(){
+  if (App.chatChannel !== undefined){
+    App.chatChannel.unsubscribe();
+  }
+}
+
 function createTargetEvents() {
   $('.home-container').on('click', '.back-button', backToHome);
 
@@ -264,6 +304,21 @@ function newMatchModalEvents() {
   $('.new-match-modal .skip-link').click(function() {
     $('.new-match-modal').modal('hide');
   });
+  $('.new-match-modal .modal-button').click(function() {
+    matchId = $('.new-match-user h4').data('match-id');
+    $('.new-match-modal').modal('hide');
+    $('[data-match-id="' + matchId + '"]').click();
+  });
+}
+
+function chatEvents() {
+  $('.home-container').on('click', '.match', openChat);
+  $('.home-container').on('keypress','.new-message-box', function(e) {
+    if (e.keyCode == 13) {
+      sendMessage($(this).val());
+      $(this).val('');
+    }
+  })
 }
 
 $(document).ready(function() {
@@ -272,6 +327,7 @@ $(document).ready(function() {
   editFirstLoginEvent();
   editUserEvents();
   newMatchModalEvents();
+  chatEvents();
   if (firstLogin) {
     activateMapEvents();
   } else {

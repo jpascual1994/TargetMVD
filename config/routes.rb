@@ -14,5 +14,9 @@ Rails.application.routes.draw do
 
   resources :user_targets, only: %i(create index show destroy)
 
+  resources :chats, only: :show
+
+  resources :messages, only: :create
+
   mount ActionCable.server => '/cable'
 end

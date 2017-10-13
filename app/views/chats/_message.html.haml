@@ -1,0 +1,7 @@
+- date = message.created_at.strftime('%H:%M')
+- text = message.text
+.message{ class: "#{ user.id == message.user_id ? 'my-message' : 'his-message'}" }
+  .message-time
+    = date
+  .message-text
+    = text

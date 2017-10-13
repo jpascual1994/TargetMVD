@@ -1,0 +1,3 @@
+$('.home-left-top').addClass('hidden');
+$('.home-left-chat-section').remove();
+$('.home-left').prepend("<%= j render partial: 'chat.html.haml', layout: false, locals: { match: chat.match, chat: chat } %>")

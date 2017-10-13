@@ -5,8 +5,8 @@
   .hompage-chat-label Chat
   .my-matches-list
     - current_matches.each do |match|
-      .match
-        - if match.first_target.user_id == current_user.id
+      .match{ data: { match_id: match.id, show_chat_url: chat_path(match.chat) } }
+        - if match.first_target.user_id == user.id
           - target = match.second_target
         - else
           - target = match.first_target
