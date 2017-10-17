@@ -34,11 +34,13 @@ ActiveRecord::Schema.define(version: 20171010155215) do
   create_table "messages", force: :cascade do |t|
     t.text "text"
     t.bigint "chat_id"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "from_id"
+    t.bigint "to_id"
     t.index ["chat_id"], name: "index_messages_on_chat_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
+    t.index ["from_id"], name: "index_messages_on_from_id"
+    t.index ["to_id"], name: "index_messages_on_to_id"
   end
 
   create_table "topics", force: :cascade do |t|

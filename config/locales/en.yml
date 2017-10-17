@@ -34,3 +34,4 @@ en:
   no_matches: 'There are not matches for your targets yet.'
   facebook_account: 'Your account was created by facebook'
   reset_email_sent: 'You will receive an email with instructions on how to reset your password in a few minutes.'
+  new_message: 'You have a new message from:'

@@ -24,6 +24,7 @@ require 'capybara/rspec'
 require 'capybara/poltergeist'
 require 'phantomjs'
 require 'factory_girl_rails'
+require 'puma'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
 
@@ -33,6 +34,8 @@ FactoryGirl.reload
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 Capybara.javascript_driver = :poltergeist
+
+Capybara.server = :puma
 
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, phantomjs: Phantomjs.path)

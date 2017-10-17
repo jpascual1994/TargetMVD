@@ -1,4 +1,4 @@
-.message{ class: "#{ user.id == message.user_id ? 'my-message' : 'his-message'}" }
+.message{ class: "#{ user.id == message.from_id ? 'my-message' : 'his-message'}" }
   .message-time
     = message.created_at.strftime('%H:%M')
   .message-text
