@@ -8,7 +8,7 @@
       .left-topic-info
         = image_tag "#{chat.match.first_target.topic.title}x2.png", class: 'topic-info-img'
       .right-topic-info
-        .user-name
+        .user-name{ data: { other_user_id: target.user_id } }
           = target.user.name
         .target-title
           = target.title
@@ -16,4 +16,4 @@
       - chat.messages.each do |message|
         = render 'message.html.haml', message: message, user: current_user
   .chat-footer
-    %input.new-message-box{ type: 'text' }
+    %input.new-message-box#new-message-box{ type: 'text' }

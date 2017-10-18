@@ -25,6 +25,7 @@ class CheckNewMatchesService
   def send_new_match_notification(user, new_match_with, new_matches_count)
     NotificationsChannel.broadcast_to(
       user,
+      type: 'new match',
       modal_body: render_new_match_modal(new_match_with, new_matches_count),
       chat_section: render_chats
     )

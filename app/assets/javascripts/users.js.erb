@@ -213,15 +213,20 @@ function destroyTarget(route) {
 }
 
 function openChat() {
+  window.chatOpen = $(this).data('match-id');
   var url = $(this).data('show-chat-url');
   $.get(url).done(function() {
+    scrollChat();
     var chatId = $('.chat-middle').data('chat-id');
     App.chatChannel = App.cable.subscriptions.create({ channel: 'ChatChannel', chat_id: chatId }, {
       received: function(data) {
-        var userId = $('.chat-middle').data('user-id');
-        $('.chat-section').append(data.new_message);
-        if (data.sender !== userId)
-          $('.chat-section .message').last().removeClass('my-message').addClass('his-message');
+        if (data.match_id === window.chatOpen) {
+          var userId = $('.chat-middle').data('user-id');
+          $('.chat-section').append(data.new_message);
+          if (data.sender !== userId)
+            $('.chat-section .message').last().removeClass('my-message').addClass('his-message');
+          scrollChat();
+        }
       }
     });
   });
@@ -229,13 +234,16 @@ function openChat() {
 
 function sendMessage(message) {
   var chatMiddle = $('.chat-middle');
-  var user = chatMiddle.data('user-id');
+  var from = chatMiddle.data('user-id');
+  var to = $('.right-topic-info .user-name').data('other-user-id');
   var chat = chatMiddle.data('chat-id');
   var url = chatMiddle.data('message-path');
+
   var data = {
     message: {
       text: message,
-      user_id: user,
+      from_id: from,
+      to_id: to,
       chat_id: chat
     }
   };
@@ -246,6 +254,12 @@ function closeChat(){
   if (App.chatChannel !== undefined){
     App.chatChannel.unsubscribe();
   }
+  window.chatOpen = undefined;
+}
+
+function scrollChat() {
+  var scrollHeight = $('.chat-section')[0].scrollHeight;
+  $('.chat-section').scrollTop(scrollHeight);
 }
 
 function createTargetEvents() {
@@ -304,6 +318,7 @@ function newMatchModalEvents() {
     $('.new-match-modal').modal('hide');
   });
   $('.new-match-modal .modal-button').click(function() {
+    closeChat();
     matchId = $('.new-match-user h4').data('match-id');
     $('.new-match-modal').modal('hide');
     $('[data-match-id="' + matchId + '"]').click();
@@ -320,12 +335,26 @@ function chatEvents() {
   })
 }
 
+function newMessageModalEvents() {
+  $('.new-message-modal .skip-link').click(function() {
+    $('.new-message-modal').modal('hide');
+  });
+
+  $('.new-message-modal .modal-button').click(function() {
+    closeChat();
+    matchId = $('.new-message-user h4').data('match-id');
+    $('.new-message-modal').modal('hide');
+    $('[data-match-id="' + matchId + '"]').click();
+  });
+}
+
 $(document).ready(function() {
   firstLogin = $('.home-container').data('first-login');
   initMap();
   editFirstLoginEvent();
   editUserEvents();
   newMatchModalEvents();
+  newMessageModalEvents();
   chatEvents();
   if (firstLogin) {
     activateMapEvents();
