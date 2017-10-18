@@ -211,7 +211,8 @@ hr {
 
   .match-right {
     float: right;
-    padding: 7px 35px 0 0;
+    position: relative;
+    width: 50px;
   }
 
   .user-name {
@@ -219,12 +220,29 @@ hr {
   }
 
   .match-topic {
-    width: 30px;
+    width: 20px;
     text-align: center;
+    display: inline-block;
   }
 
   .match-topic-img {
-    height: 25px;
+    height: 20px;
+    margin-top: 10px;
+  }
+
+  .unread-msgs {
+    background: #f0c738;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: none;
+    text-align: center;
+    font-size: 12px;
+    min-width: 20px;
+    padding: 1px;
+    position: absolute;
+    top: 3px;
+    left: 15px;
   }
 }
 
@@ -355,6 +373,10 @@ hr {
 
   .message.my-message {
     margin-left: calc(100% - 200px);
+  }
+
+  .match .unread-msgs {
+    left: 25px;
   }
 }
 

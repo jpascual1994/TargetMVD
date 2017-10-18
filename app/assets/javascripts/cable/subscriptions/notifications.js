@@ -9,6 +9,11 @@ App.cable.subscriptions.create('NotificationsChannel', {
         $('.new-message-modal .modal-custom-content').html(data.modal_body);
         $('.new-message-modal').modal('show');
       }
+      unreads = $('.home-left-top .match[data-match-id="' + data.match_id + '"] .unread-msgs');
+      unreads.removeClass('hidden');
+      new_unreads = unreads.html();
+      new_unreads++;
+      unreads.html(new_unreads);
     }
   }
 });

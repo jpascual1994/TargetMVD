@@ -14,7 +14,11 @@ Rails.application.routes.draw do
 
   resources :user_targets, only: %i(create index show destroy)
 
-  resources :chats, only: :show
+  resources :chats, only: :show do
+    member do
+      post :read_messages
+    end
+  end
 
   resources :messages, only: :create
 

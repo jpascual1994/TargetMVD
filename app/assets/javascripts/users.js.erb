@@ -229,6 +229,7 @@ function openChat() {
         }
       }
     });
+    readMessages();
   });
 }
 
@@ -260,6 +261,13 @@ function closeChat(){
 function scrollChat() {
   var scrollHeight = $('.chat-section')[0].scrollHeight;
   $('.chat-section').scrollTop(scrollHeight);
+}
+
+function readMessages() {
+  $.post($('.chat-middle').data('read-messages-path'));
+  unreads = $('.home-left-top .match[data-match-id="' + window.chatOpen + '"] .unread-msgs');
+  unreads.html(0);
+  unreads.addClass('hidden');
 }
 
 function createTargetEvents() {
@@ -321,6 +329,7 @@ function newMatchModalEvents() {
     closeChat();
     matchId = $('.new-match-user h4').data('match-id');
     $('.new-match-modal').modal('hide');
+    backToHome();
     $('[data-match-id="' + matchId + '"]').click();
   });
 }
@@ -344,6 +353,7 @@ function newMessageModalEvents() {
     closeChat();
     matchId = $('.new-message-user h4').data('match-id');
     $('.new-message-modal').modal('hide');
+    backToHome();
     $('[data-match-id="' + matchId + '"]').click();
   });
 }

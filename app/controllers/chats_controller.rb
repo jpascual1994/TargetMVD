@@ -6,6 +6,10 @@ class ChatsController < ApplicationController
   def show
   end
 
+  def read_messages
+    chat.read_messages(current_user.id)
+  end
+
   private
 
   def chat
