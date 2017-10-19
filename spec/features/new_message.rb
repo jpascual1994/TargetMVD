@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature 'New message notification', type: :feature, js: true do
+RSpec.feature 'New message', type: :feature, js: true do
   let(:first_user) { User.first }
   let(:second_user) { User.second }
 
@@ -32,6 +32,12 @@ RSpec.feature 'New message notification', type: :feature, js: true do
     scenario 'The modal is show' do
       Capybara.using_session 'user2' do
         expect(page).to have_content('You have a new message')
+      end
+    end
+
+    scenario 'Show unread message count' do
+      Capybara.using_session 'user2' do
+        expect(page).to have_css('div.unread-msgs', text: '1')
       end
     end
   end

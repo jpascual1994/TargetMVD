@@ -18,3 +18,5 @@
         .match-right
           .match-topic
             = image_tag "#{target.topic.title}x2.png", class: 'match-topic-img'
+          .unread-msgs{ class: ('hidden' unless match.chat.unread_messages(user.id).exists?) }
+            = match.chat.unread_messages_count(user.id)

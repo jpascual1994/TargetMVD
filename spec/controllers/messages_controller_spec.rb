@@ -4,13 +4,14 @@ RSpec.describe MessagesController, type: :controller do
   describe '#create' do
     context 'with valid params' do
       let(:user) { User.first }
+      let(:user2) { User.second }
       let(:chat) { Chat.first }
 
       before(:each) do
         create_user_with_match
         user.confirm
         sign_in user
-        post :create, params: { message: { text: 'hola', chat_id: chat.id, user_id: user.id } }, xhr: true
+        post :create, params: { message: { text: 'hola', chat_id: chat.id, from_id: user.id, to_id: user2.id  } }, xhr: true
       end
 
       it 'responds http 200' do
